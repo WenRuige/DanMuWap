@@ -1,0 +1,8 @@
+//后端框架采用lumen
+//前端框架采用vue
+//数据库采用pgsql
+//服务器采用docker
+//ui选择 what?
+
+//vue 全家桶
+vue-loader/vue-source/
