@@ -18,26 +18,42 @@
         background-color: #ffffff;
         box-shadow: 0px 1px 3px rgba(34, 25, 25, 0.2);
     }
+
+    #danmu {
+        float: right;
+        margin-top: 10px;
+        margin-right: 4px;
+    }
+
+    #bottom {
+        background-color: #ffffff;
+    }
 </style>
 <body>
 <!-- 导航栏 -->
-<div id="nav">
-    <nav class="nav">
-        <a class="nav-link active" href="#">首页</a>
-        <a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-            开启弹幕
-        </a>
-    </nav>
+<div class="row" id="nav">
+    <a id="danmu" data-toggle="collapse" href="#collapseExample" aria-expanded="false"
+       aria-controls="collapseExample">
+        弹幕
+    </a>
 </div>
 <!--导航栏结束-->
-<div class="collapse" id="collapseExample">
-    <div class="card card-block">
-        弹幕层, 弹幕层, 弹幕层, 弹幕层, 弹幕层, 弹幕层, 弹幕层, 弹幕层, 弹幕层, 弹幕层
+<div class="row">
+    <div class="collapse" id="collapseExample">
+        <div class="card card-block">
+            弹幕层, 弹幕层, 弹幕层, 弹幕层, 弹幕层, 弹幕层, 弹幕层, 弹幕层, 弹幕层, 弹幕层
+        </div>
     </div>
 </div>
-<div class="container">
-    @yield('content')
+@yield('content')
+<!-- 底部导航栏目 -->
+<div class="row">
+    <nav id="bottom" class="navbar fixed-bottom navbar-light bg-faded">
+        <a id="bottom">底部</a>
+    </nav>
 </div>
+<!-- 底部导航栏目结束 -->
+
 <!-- 引入javascript 文件-->
 <script src="https://cdn.bootcss.com/jquery/3.1.1/jquery.slim.min.js"
         integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
