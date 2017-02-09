@@ -18,15 +18,11 @@
         background-color: #ffffff;
         box-shadow: 0px 1px 3px rgba(34, 25, 25, 0.2);
     }
-
-    #danmu {
-        float: right;
-        margin-top: 10px;
-        margin-right: 4px;
-    }
-
     #bottom {
         background-color: #ffffff;
+    }
+    #danmu{
+        margin:0 auto;
     }
 </style>
 <body>
@@ -34,7 +30,7 @@
 <div class="row" id="nav">
     <a id="danmu" data-toggle="collapse" href="#collapseExample" aria-expanded="false"
        aria-controls="collapseExample">
-        弹幕
+        弹
     </a>
 </div>
 <!--导航栏结束-->
@@ -42,6 +38,11 @@
     <div class="collapse" id="collapseExample">
         <div class="card card-block">
             弹幕层, 弹幕层, 弹幕层, 弹幕层, 弹幕层, 弹幕层, 弹幕层, 弹幕层, 弹幕层, 弹幕层
+            弹幕层, 弹幕层, 弹幕层, 弹幕层, 弹幕层, 弹幕层, 弹幕层, 弹幕层, 弹幕层, 弹幕层弹幕层, 弹幕层, 弹幕层, 弹幕层, 弹幕层, 弹幕层, 弹幕层, 弹幕层, 弹幕层, 弹幕层弹幕层, 弹幕层, 弹幕层, 弹幕层, 弹幕层, 弹幕层, 弹幕层, 弹幕层, 弹幕层, 弹幕层
+            弹幕层, 弹幕层, 弹幕层, 弹幕层, 弹幕层, 弹幕层, 弹幕层, 弹幕层, 弹幕层, 弹幕层
+
+
+
         </div>
     </div>
 </div>
