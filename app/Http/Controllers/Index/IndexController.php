@@ -33,15 +33,15 @@ class IndexController extends Controller
         //        $this->user->say();
         Cache::put('key','value',30);
             $data = Cache::get('key');
-         dd($data);
+
     }
 
     public function index(Request $request)
     {
         //启用验证系统
-        $this->validate($request, [
-            'name' => 'required'
-        ]);
+//        $this->validate($request, [
+//            'name' => 'required'
+//        ]);
         return view('Index.index');
     }
 }

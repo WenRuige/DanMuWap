@@ -64,12 +64,11 @@ $app->singleton(
 |
 */
 //注册laravel debugger
-if (env('APP_DEBUG')) {
-    $app->register(Barryvdh\Debugbar\LumenServiceProvider::class);
-}
+//if (env('APP_DEBUG')) {
+//    $app->register(Barryvdh\Debugbar\LumenServiceProvider::class);
+//}
 //配置debugbar
-$app->configure('debugbar');
-
+//$app->configure('debugbar');
 
 
 
@@ -79,9 +78,7 @@ $app->configure('database');
 
 //注册MiddleWare,使用example中间件,所有的路由都会经过这层
 $app->middleware([
-    App\Http\Middleware\BeforeMiddleware::class,
-    App\Http\Middleware\GodMiddleware::class,
-
+  //  App\Http\Middleware\Authority::class,
 ]);
 
 //如果是路由中间件的话,那么使用 'key' => 'value' 的形式进行注册
