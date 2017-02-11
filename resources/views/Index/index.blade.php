@@ -5,77 +5,222 @@
 @endsection
 @section('content')
     <link rel="stylesheet" href="../plugins/barrager/css/barrager.css">
+    <link rel="stylesheet" href="../plugins/sHover/css/example.css">
     <!-- 轮播图开始-->
-    <div class="row" style="height: 240px;margin-top: 1px;">
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner" role="listbox">
-                <div class="carousel-item active">
-                    <img class="d-block img-fluid" src="../123.jpg" style="width: 100%;height:100%;" alt="第一张图">
+    <div class="Carousel" style="margin-top: 1px;">
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+            {{--<ol class="carousel-indicators">--}}
+            {{--<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>--}}
+            {{--<li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>--}}
+            {{--<li data-target="#carousel-example-generic" data-slide-to="2" class=""></li>--}}
+            {{--</ol>--}}
+            <div class="carousel-inner">
+                <div class="item active">
+                    <img src="../123.jpg" style="width: 100%;height: 30%" alt="First slide">
+
+                    <div class="carousel-caption">
+                        First Slide
+                    </div>
                 </div>
-                <div class="carousel-item">
-                    <img class="d-block img-fluid" src="../123.jpg" style="width: 100%;height: 100%;" alt="第二张图">
+                <div class="item">
+                    <img src="../123.jpg" style="width: 100%;height: 30%" alt="Second slide">
+
+                    <div class="carousel-caption">
+                        Second Slide
+                    </div>
                 </div>
-                <div class="carousel-item">
-                    <img class="d-block img-fluid" src="../123.jpg" style="width: 100%;height: 100%;" alt="第三张图">
+                <div class="item">
+                    <img src="../123.jpg" style="width: 100%;height: 30%" alt="Third slide">
+
+                    <div class="carousel-caption">
+                        Third Slide
+                    </div>
                 </div>
             </div>
-            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
+            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                <span class="fa fa-angle-left"></span>
             </a>
-            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
+            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                <span class="fa fa-angle-right"></span>
             </a>
         </div>
     </div>
+    <!-- 轮播图结束--->
+    <style>
+        #video {
+            background-color: #ffffff;
+            margin-top: 3px;
 
-    {{--<div class="row" style=" background-color: #ffffff;">--}}
-    {{--<div class="card card-inverse">--}}
-    {{--<img class="card-img" src="../123.jpg" alt="Card image">--}}
-    {{--<div class="card-img-overlay">--}}
-    {{--<h4 class="card-title">Card title</h4>--}}
-    {{--<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>--}}
-    {{--<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>--}}
-    {{--</div>--}}
-    {{--</div>--}}
+        }
 
-    {{--</div>--}}
-    <div class="row">
-        <div class="card">
-            <img class="card-img-top" src="../123.jpg" alt="Card image cap" style="width: 100%;height: 30%;">
-            <div class="card-block">
-                <h4 class="card-title">故事汇</h4>
-                <p class="card-text">讲述了一个故事</p>
-            </div>
+        .user-block {
+            padding: 10px;
+        }
+
+        .commet {
+            margin-top: 10px;
+            padding-bottom: 5px;
+
+        }
+
+        .commet a {
+            margin-left: 10px;
+        }
+    </style>
+
+
+    <div id="video">
+
+        <div class="user-block">
+            <img class="img-circle img-bordered-sm" src="../../dist/img/user6-128x128.jpg" alt="User Image">
+            <span class="username">
+                          <a href="#">Adam Jones</a>
+                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
+                        </span>
+            <span class="description">Posted 5 photos - 5 days ago</span>
+
+
         </div>
-    </div>
-    <div class="row">
-        <div class="card">
-            <img class="card-img-top" src="../123.jpg" alt="Card image cap" style="width: 100%;height: 30%;">
-            <div class="card-block">
-                <h4 class="card-title">故事汇</h4>
-                <p class="card-text">讲述了一个故事</p>
-            </div>
+        <div class="sHoverItem" style="margin-bottom:5px;border-bottom: 1px black solid">
+            <img class="img-responsive" src="../../dist/img/photo1.png" alt="Photo">
+            <span id="intro1" class="sIntro">
+					<h2>Movie</h2>
+					<p>Flowers are so inconsistent! But I was too young to know how to love her</p>
+					<button>点击查看视频</button>
+				</span>
+
         </div>
-    </div>
-    <div class="row">
-        <div class="card">
-            <img class="card-img-top" src="../123.jpg" alt="Card image cap" style="width: 100%;height: 30%;">
-            <div class="card-block">
-                <h4 class="card-title">故事汇</h4>
-                <p class="card-text">讲述了一个故事</p>
-            </div>
+        <div class="commet">
+            <a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a>
+            <a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
+            <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments(5)</a>
         </div>
+
     </div>
 
+    <div id="video">
+
+        <div class="user-block">
+            <img class="img-circle img-bordered-sm" src="../../dist/img/user6-128x128.jpg" alt="User Image">
+            <span class="username">
+                          <a href="#">Adam Jones</a>
+                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
+                        </span>
+            <span class="description">Posted 5 photos - 5 days ago</span>
+
+
+        </div>
+        <div class="sHoverItem" style="margin-bottom:5px;border-bottom: 1px black solid">
+            <img class="img-responsive" src="../../dist/img/photo1.png" alt="Photo">
+            <span id="intro1" class="sIntro">
+					<h2>Movie</h2>
+					<p>Flowers are so inconsistent! But I was too young to know how to love her</p>
+					<button>点击查看视频</button>
+				</span>
+
+        </div>
+        <div class="commet">
+            <a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a>
+            <a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
+            <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments(5)</a>
+        </div>
+
+    </div>
+    <div id="video">
+
+        <div class="user-block">
+            <img class="img-circle img-bordered-sm" src="../../dist/img/user6-128x128.jpg" alt="User Image">
+            <span class="username">
+                          <a href="#">Adam Jones</a>
+                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
+                        </span>
+            <span class="description">Posted 5 photos - 5 days ago</span>
+
+
+        </div>
+        <div class="sHoverItem" style="margin-bottom:5px;border-bottom: 1px black solid">
+            <img class="img-responsive" src="../../dist/img/photo1.png" alt="Photo">
+            <span id="intro1" class="sIntro">
+					<h2>Movie</h2>
+					<p>Flowers are so inconsistent! But I was too young to know how to love her</p>
+					<button>点击查看视频</button>
+				</span>
+
+        </div>
+        <div class="commet">
+            <a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a>
+            <a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
+            <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments(5)</a>
+        </div>
+
+    </div>
+    <div id="video">
+
+        <div class="user-block">
+            <img class="img-circle img-bordered-sm" src="../../dist/img/user6-128x128.jpg" alt="User Image">
+            <span class="username">
+                          <a href="#">Adam Jones</a>
+                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
+                        </span>
+            <span class="description">Posted 5 photos - 5 days ago</span>
+
+
+        </div>
+        <div class="sHoverItem" style="margin-bottom:5px;border-bottom: 1px black solid">
+            <img class="img-responsive" src="../../dist/img/photo1.png" alt="Photo">
+            <span id="intro1" class="sIntro">
+					<h2>Movie</h2>
+					<p>Flowers are so inconsistent! But I was too young to know how to love her</p>
+					<button>点击查看视频</button>
+				</span>
+
+        </div>
+        <div class="commet">
+            <a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a>
+            <a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
+            <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments(5)</a>
+        </div>
+
+    </div>
+    <div id="video">
+
+        <div class="user-block">
+            <img class="img-circle img-bordered-sm" src="../../dist/img/user6-128x128.jpg" alt="User Image">
+            <span class="username">
+                          <a href="#">Adam Jones</a>
+                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
+                        </span>
+            <span class="description">Posted 5 photos - 5 days ago</span>
+
+
+        </div>
+        <div class="sHoverItem" style="margin-bottom:5px;border-bottom: 1px black solid">
+            <img class="img-responsive" src="../../dist/img/photo1.png" alt="Photo">
+            <span id="intro1" class="sIntro">
+					<h2>Movie</h2>
+					<p>Flowers are so inconsistent! But I was too young to know how to love her</p>
+					<button>点击查看视频</button>
+				</span>
+
+        </div>
+        <div class="commet">
+            <a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a>
+            <a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
+            <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments(5)</a>
+        </div>
+
+    </div>
     <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
     <script src="../plugins/barrager/js/jquery.barrager.min.js"></script>
+    <script src="../plugins/sHover/js/sHover.min.js"></script>
+    <script>
+        var a = new sHover("sHoverItem", "sIntro");
+        a.set({
+            slideSpeed: 5,
+            opacityChange: true,
+            opacity: 80
+        });
+    </script>
     <script>
         var item = {
             img: '../123.jpg', //图片

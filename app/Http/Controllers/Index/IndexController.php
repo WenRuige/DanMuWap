@@ -35,7 +35,7 @@ class IndexController extends Controller
             $data = Cache::get('key');
 
     }
-
+    //首页测试
     public function index(Request $request)
     {
         //启用验证系统
@@ -43,5 +43,12 @@ class IndexController extends Controller
 //            'name' => 'required'
 //        ]);
         return view('Index.index');
+    }
+    //视频页面测试
+    public function video(){
+        return view('Video.index');
+    }
+    public function home(){
+        return view('Home.index');
     }
 }

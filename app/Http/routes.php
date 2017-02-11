@@ -20,6 +20,10 @@ $app->get('foo', function () {
 });
 //展示首页
 $app->get('index','Index\IndexController@index');
+//视频详情
+$app->get('p','Index\IndexController@video');
+//我的页面
+$app->get('home','Index\IndexController@home');
 //check路由
 $app->get('check','Index\IndexController@check');
 
