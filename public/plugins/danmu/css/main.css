@@ -400,5 +400,5 @@ border-radius: 50%;
 
 }
 
-.iplay{width:20px;height:24px;margin:6px 20px 30px 30px;display:block;background:url(icon.png) no-repeat 0 0}
-.ipause{width:20px;height:24px;margin:6px 20px 30px 30px;display:block;background:url(icon.png) no-repeat 0 -34px}
+.iplay{width:20px;height:24px;margin:4px auto;display:block;background:url(icon.png) no-repeat 0 0}
+.ipause{width:20px;height:24px;margin:4px auto;display:block;background:url(icon.png) no-repeat 0 -34px}
