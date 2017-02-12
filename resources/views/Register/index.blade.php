@@ -41,15 +41,15 @@
             {{--<span class="glyphicon glyphicon-user form-control-feedback"></span>--}}
             {{--</div>--}}
             <div class="form-group has-feedback">
-                <input v-model="email" type="email" class="form-control" id="email" placeholder="电子邮箱">
+                <input v-model="email" type="email" class="form-control" placeholder="电子邮箱">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                <input v-model="password" type="password" class="form-control" id="password" placeholder="密码">
+                <input v-model="password" type="password" class="form-control" placeholder="密码">
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                <input v-model="repassword" type="password" class="form-control" id="repassword" placeholder="密码确认">
+                <input v-model="repassword" type="password" class="form-control" placeholder="密码确认">
                 <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
             </div>
             <div class="row">
@@ -81,6 +81,7 @@
 <script src="{{url('/bootstrap/js/bootstrap.min.js')}}"></script>
 <!-- 引入vue.js -->
 <script src="{{url('/vue/vue.js')}}"></script>
+<script src="{{url('/vue/vue-resource.js')}}"></script>
 <script>
 
     var register = new Vue({
@@ -92,7 +93,34 @@
             repassword: ''
         }, methods: {
             submit: function () {
+                if (this.$data.email == '') {
+                    alert('邮箱不可为空');
+                    return false;
+                }
+                if (this.$data.password == '') {
+                    alert('密码不可为空');
+                    return false;
+                }
+                if (this.$data.repassword == '') {
+                    alert('确认密码不可为空');
+                    return false;
+                }
+                if (this.$data.password != this.$data.repassword) {
+                    alert('两次输入的密码不一致');
+                    return false;
+                }
+                this.$http.get('/ajaxRegisterAccount', {
+                    params: {
+                        'email': this.$data.email,
+                        'password': this.$data.password
+                    }}
+                ).then(response => {
 
+                    this.someData = response.body;
+
+                }, response => {
+                    console.log(response);
+                });
             }
         }
     })

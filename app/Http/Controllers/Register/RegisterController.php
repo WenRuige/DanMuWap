@@ -8,7 +8,7 @@
 namespace App\Http\Controllers\Register;
 
 use App\Http\Controllers\Controller;
-
+use Illuminate\Http\Request;
 class RegisterController extends Controller
 {
 
@@ -22,6 +22,11 @@ class RegisterController extends Controller
     public function index()
     {
         return view('Register.index');
-        //echo 'this is register page';
+    }
+
+    public function ajaxRegisterAccount(Request $request)
+    {
+        $name = $request->input('email');
+        echo $name;
     }
 }

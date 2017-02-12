@@ -11,8 +11,10 @@
 |
 */
 
-//注册路由
+//注册模板路由
 $app->get('register','Register\RegisterController@index');
+//注册路由
+$app->get('ajaxRegisterAccount','Register\RegisterController@ajaxRegisterAccount');
 //登录路由
 $app->get('login','Login\LoginController@index');
 //展示首页
