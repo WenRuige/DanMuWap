@@ -11,13 +11,10 @@
 |
 */
 
-$app->get('/', function () use ($app) {
-    return $app->version();
-});
-//lumen的路由
-$app->get('foo', function () {
-    return view('Index.index');
-});
+//注册路由
+$app->get('register','Register\RegisterController@index');
+//登录路由
+$app->get('login','Login\LoginController@index');
 //展示首页
 $app->get('index','Index\IndexController@index');
 //视频详情

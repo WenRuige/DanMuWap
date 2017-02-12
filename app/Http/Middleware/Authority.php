@@ -14,8 +14,8 @@ use Closure;
 class Authority
 {
     //进行处理
-    public function handle($request,Closure $next)
+    public function handle($request, Closure $next)
     {
-
+        //如果未登录的话,跳转至登录的路由
     }
 }
