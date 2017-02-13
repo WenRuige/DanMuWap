@@ -9,6 +9,7 @@ namespace App\Http\Controllers\Register;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Model\Register;
 class RegisterController extends Controller
 {
 
@@ -26,7 +27,13 @@ class RegisterController extends Controller
 
     public function ajaxRegisterAccount(Request $request)
     {
-        $name = $request->input('email');
-        echo $name;
+        $this->validate($request, [
+            'email' => 'required',
+            'password' => 'required'
+        ]);
+        $email = $request->input('email');
+        $password = password_hash($request->input('password'), PASSWORD_DEFAULT);
+        Register::registerAccount($email,$password);
+        //echo $password;
     }
 }
