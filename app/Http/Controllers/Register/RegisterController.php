@@ -9,17 +9,10 @@ namespace App\Http\Controllers\Register;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Model\Register;
+use App\Logic\Register\RegisterLogic;
+
 class RegisterController extends Controller
 {
-
-
-    //构造函数
-    public function __construct()
-    {
-
-    }
-
     public function index()
     {
         return view('Register.index');
@@ -33,7 +26,10 @@ class RegisterController extends Controller
         ]);
         $email = $request->input('email');
         $password = password_hash($request->input('password'), PASSWORD_DEFAULT);
-        Register::registerAccount($email,$password);
+        RegisterLogic::getInstance()->registerAccount($email,$password);
+        //RegisterLogic::registerAccount($email,$password);
+        //$this->register->
+        //Register::registerAccount($email, $password);
         //echo $password;
     }
 }

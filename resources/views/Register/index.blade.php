@@ -70,7 +70,6 @@
                 using
                 Google+</a>
         </div>
-
         <a href="login.html" class="text-center">我已经成为会员了</a>
     </div>
     <!-- /.form-box -->

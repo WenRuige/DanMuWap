@@ -14,16 +14,25 @@ class Register extends Model
 {
 
     private static $_instance;
-    public function __construct()
-    {
 
+    public static function getInstance(){
+        if(self::$_instance instanceof self){
+            return self::$_instance;
+        }else{
+            return new self();
+        }
     }
     //注册一个账户
-    public static function  registerAccount($email,$password)
+    public  function  registerAccount($email,$password)
     {
+        echo $email;die;
         //使用查询构造器的方式来进行查询
-        DB::select();
+        //$users = DB::table('users')->get
         return response()->json(['name' => 'Abigail', 'state' => 'CA']);
+    }
+    //检查改账户是否注册过
+    public function checkIsRegister($email){
+        return DB::table('users')->where('email', $email)->value('email');
     }
 
 
