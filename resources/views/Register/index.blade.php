@@ -109,14 +109,18 @@
                     return false;
                 }
                 this.$http.get('/ajaxRegisterAccount', {
-                    params: {
-                        'email': this.$data.email,
-                        'password': this.$data.password
-                    }}
+                        params: {
+                            'email': this.$data.email,
+                            'password': this.$data.password
+                        }
+                    }
                 ).then(response => {
-
-                    this.someData = response.body;
-
+                    var res = response.body;
+                    if (res.code != 0) {
+                        alert(res.message);
+                    } else {
+                        //注册成功后跳转
+                    }
                 }, response => {
                     console.log(response);
                 });

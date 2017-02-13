@@ -11,7 +11,7 @@ use App\Constant;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Logic\Register\RegisterLogic;
-use Illuminate\Http\Response;
+
 
 class RegisterController extends Controller
 {
