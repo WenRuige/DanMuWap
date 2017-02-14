@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Laravel\Lumen\Routing\Controller as BaseController;
-use Illuminate\Http\RedirectResponse;
 class Controller extends BaseController
 {
     public function __construct($flag = true)
