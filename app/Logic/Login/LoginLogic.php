@@ -7,7 +7,7 @@
  */
 namespace App\Logic\Login;
 use App\Constant;
-use App\Model\Login;
+use App\Model\User;
 
 //登录逻辑层
 class LoginLogic
@@ -28,7 +28,7 @@ class LoginLogic
     public function login($email, $password)
     {
         try {
-            $info = Login::getInstance()->checkEmail($email);
+            $info = User::getInstance()->checkEmail($email);
             //如果用户email为空的话
             if(empty($info->email)){
                 $result = array('code' => Constant::USER_ERROR, 'message' => Constant::getMsg(Constant::USER_ERROR));

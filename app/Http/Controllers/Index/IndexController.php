@@ -19,9 +19,8 @@ class IndexController extends Controller
 
 
     //构造函数
-    public function __construct(User $user)
+    public function __construct()
     {
-        $this->user = $user;
     }
 
     //方法

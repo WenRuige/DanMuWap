@@ -26,6 +26,7 @@
     <script src="{{url('/dist/js/html5shiv.min.js')}}"></script>
     <script src="{{url('/dist/js/respond.min.js')}}"></script>
     <![endif]-->
+
 </head>
 <style>
     body {
@@ -44,7 +45,8 @@
         margin-left: 20px;
         margin-top: 5px;
     }
-    #bottom{
+
+    #bottom {
         list-style-type: none;
         margin: 0;
         padding: 0;
@@ -59,15 +61,16 @@
 
     #bottom li {
         float: left;
-        text-align:center;
+        text-align: center;
         width: 33.33%;
     }
 
     #bottom li a {
         display: block;
-        text-align:center;
+        text-align: center;
     }
-    #bottom li a i{
+
+    #bottom li a i {
         margin-top: 2px;
         margin-right: 40px;
         /*text-align:center*/
@@ -81,22 +84,24 @@
     <img src="../picture/logo.png" id="logo" style=" width:100px;height: 40px">
 </div>
 {{--<!--导航栏结束-->--}}
-
-
+<!-- 引入vue.js-->
+<script src="{{url('/vue/vue.js')}}"></script>
+<script src="{{url('/vue/vue-resource.js')}}"></script>
+<!-- 引入vue.js结束-->
 <div class="main">
     @yield('content')
 </div>
 <!-- 底部导航栏目 -->
 {{--<ul>--}}
-    {{--<li><a href="#home">Home</a></li>--}}
-    {{--<li><a href="#news">News</a></li>--}}
-    {{--<li><a href="#contact">Contact</a></li>--}}
+{{--<li><a href="#home">Home</a></li>--}}
+{{--<li><a href="#news">News</a></li>--}}
+{{--<li><a href="#contact">Contact</a></li>--}}
 {{--</ul>--}}
 <div id="bottom" class="box-footer no-padding">
     <ul class="nav nav-stacked">
-        <li><a href="#">   &nbsp; <span class="pull-right"><i class="fa fa-fw fa-user"></i></span> &nbsp;</a></li>
+        <li><a href="#"> <span class="pull-right"><i class="fa fa-fw fa-user"></i></span> &nbsp;</a></li>
         <li><a href="#">  &nbsp;<span class="pull-right"><i class="fa fa-fw fa-user"></i></span> &nbsp;</a></li>
-        <li><a href="#">  &nbsp;<span class="pull-right"><i class="fa fa-fw fa-user"></i></span> &nbsp;</a></li>
+        <li><a href="/home">  &nbsp;<span class="pull-right"><i class="fa fa-fw fa-user"></i></span> &nbsp;</a></li>
     </ul>
 </div>
 <!-- 底部导航栏目结束 -->

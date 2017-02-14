@@ -16,7 +16,7 @@ class LoginController extends Controller
 {
     public function __construct()
     {
-
+        parent::__construct(false);
     }
 
     public function index()
@@ -39,6 +39,14 @@ class LoginController extends Controller
         } else {
             return response()->json(array('code' => $info['code'], 'message' => Constant::getMsg($info['code'])));
         }
+    }
+
+    //退出登录
+    public function Logout()
+    {
+        //注销session
+        unset($_SESSION['userId']);
+        header("Location:/login");
     }
 
 }

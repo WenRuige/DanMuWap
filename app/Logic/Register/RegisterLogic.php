@@ -9,6 +9,7 @@
 namespace App\Logic\Register;
 
 use App\Model\Register;
+use App\Model\User;
 use Log;
 use App\Constant;
 
@@ -31,14 +32,14 @@ class RegisterLogic
     {
         try {
             //首先check邮箱是否重复
-            $info = Register::getInstance()->checkIsRegister($email);
+            $info = User::getInstance()->checkIsRegister($email);
             //用户名重复
             if (!empty($info)) {
                 $result = array('code' => Constant::PARAM_REPEAT, 'message' => Constant::getMsg(Constant::PARAM_REPEAT));
                 return $result;
             }
             //若用户名不重复则直接插入数据
-            $flag = Register::getInstance()->registerAccount($email, $password);
+            $flag = User::getInstance()->registerAccount($email, $password);
             if (is_bool($info) && $flag) {
                 $result = array('code' => Constant::SUCCESS, 'message' => Constant::getMsg(Constant::SUCCESS));
                 return $result;

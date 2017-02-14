@@ -55,9 +55,8 @@
         <ul class="nav nav-stacked">
             <li><a href="#">修改头像 <span class="pull-right"><i class="fa fa-fw fa-file-photo-o"></i></span></a></li>
             <li><a href="#">上传视频 <span class="pull-right"><i class="fa fa-fw fa-file-video-o"></i></span></a></li>
-            <li><a href="#">编辑个人信息 <span class="pull-right"><i class="fa fa-fw fa-male"></i></span></a></li>
-            <li><a href="#">退出登录 <span class="pull-right"><i class="fa fa-fw fa-power-off"></i></span></a></li>
-
+            <li><a href="/showAlterUserBlade">编辑个人信息 <span class="pull-right"><i class="fa fa-fw fa-male"></i></span></a></li>
+            <li><a href="/logout">退出登录<span class="pull-right"><i class="fa fa-fw fa-power-off"></i></span></a></li>
         </ul>
     </div>
     <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
