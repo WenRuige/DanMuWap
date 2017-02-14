@@ -16,7 +16,9 @@ $app->get('register','Register\RegisterController@index');
 //注册路由
 $app->get('ajaxRegisterAccount','Register\RegisterController@ajaxRegisterAccount');
 //登录模板路由
-$app->get('login','Login\LoginController@index');
+$app->get('login', [
+    'as' => 'login', 'uses' => 'Login\LoginController@index'
+]);
 //登录路由
 $app->get('ajaxLogin','Login\LoginController@ajaxLogin');
 //展示首页

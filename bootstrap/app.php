@@ -70,10 +70,19 @@ $app->singleton(
 //配置debugbar
 //$app->configure('debugbar');
 
-
-
 //配置database
 $app->configure('database');
+
+$app->extend("session",function($obj)use($app){
+    $app->configure("session");
+    return $obj;
+});
+$app->alias("session",\Illuminate\Session\SessionManager::class);
+$app->register(\Illuminate\Session\SessionServiceProvider::class);
+
+$app->middleware([
+    \Illuminate\Session\Middleware\StartSession::class
+]);
 
 
 //注册MiddleWare,使用example中间件,所有的路由都会经过这层

@@ -14,6 +14,11 @@ use App\Logic\Login\LoginLogic;
 
 class LoginController extends Controller
 {
+    public function __construct()
+    {
+
+    }
+
     public function index()
     {
         return view('Login.index');
@@ -28,8 +33,12 @@ class LoginController extends Controller
         ]);
         $email = $request->input('email');
         $password = $request->input('password');
-        LoginLogic::getInstance()->login($email, $password);
-       // echo $password;
+        $info = LoginLogic::getInstance()->login($email, $password);
+        if ($info['code'] == Constant::SUCCESS) {
+            return response()->json(array('code' => Constant::SUCCESS, 'message' => Constant::getMsg(Constant::SUCCESS)));
+        } else {
+            return response()->json(array('code' => $info['code'], 'message' => Constant::getMsg($info['code'])));
+        }
     }
 
 }

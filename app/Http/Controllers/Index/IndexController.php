@@ -39,9 +39,7 @@ class IndexController extends Controller
     public function index(Request $request)
     {
         //启用验证系统
-//        $this->validate($request, [
-//            'name' => 'required'
-//        ]);
+
         return view('Index.index');
     }
     //视频页面测试

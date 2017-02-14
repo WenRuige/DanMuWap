@@ -41,7 +41,8 @@ class LoginLogic
                 return $result;
             }
             //将用户的id存入session
-            session(['userId' => $info->id]);
+            //TODO:改为lumen原生的session
+            $_SESSION['userId'] = $info->id;
             $result = array('code' => Constant::SUCCESS, 'message' => Constant::getMsg(Constant::SUCCESS));
             return $result;
             //TODO:可以将用户登录后的时间orip记录

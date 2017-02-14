@@ -15,6 +15,12 @@ use App\Logic\Register\RegisterLogic;
 
 class RegisterController extends Controller
 {
+    //加载初始化控制器
+    public function __construct()
+    {
+        parent::__construct(true);
+    }
+
     public function index()
     {
         return view('Register.index');
