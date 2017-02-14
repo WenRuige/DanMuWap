@@ -27,24 +27,9 @@ class LoginController extends Controller
             'password' => 'required'
         ]);
         $email = $request->input('email');
-        $password = password_hash($request->input('password'), PASSWORD_DEFAULT);
-        LoginLogic::getInstance()->login($email,$password);
-        echo $password;
+        $password = $request->input('password');
+        LoginLogic::getInstance()->login($email, $password);
+       // echo $password;
     }
 
-    public function ajaxRegisterAccount(Request $request)
-    {
-        $this->validate($request, [
-            'email' => 'required',
-            'password' => 'required'
-        ]);
-        $email = $request->input('email');
-        $password = password_hash($request->input('password'), PASSWORD_DEFAULT);
-        $info = RegisterLogic::getInstance()->registerAccount($email, $password);
-        if ($info['code'] == Constant::SUCCESS) {
-            return response()->json(array('code' => Constant::SUCCESS, 'message' => Constant::getMsg(Constant::SUCCESS)));
-        } else {
-            return response()->json(array('code' => $info['code'], 'message' => Constant::getMsg($info['code'])));
-        }
-    }
 }

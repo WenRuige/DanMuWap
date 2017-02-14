@@ -9,6 +9,7 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use DB;
+
 class Login extends Model
 {
     private static $_instance;
@@ -21,15 +22,11 @@ class Login extends Model
             return new self();
         }
     }
+
     //检查用户名是否存在
     public function checkEmail($email)
     {
-        $user = DB::table('users')->where('email', $email)->first();
-        return $user;
-//        $users = DB::table('users')
-//            ->select('email','password')
-//            ->where('email', '=', $email)
-//            ->get();
-//        return $users;
+        $query = DB::table('users')->where('email', $email)->first();
+        return $query;
     }
 }

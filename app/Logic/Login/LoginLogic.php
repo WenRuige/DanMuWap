@@ -29,12 +29,22 @@ class LoginLogic
     {
         try {
             $info = Login::getInstance()->checkEmail($email);
-            dd($info);
-            if(empty($info)){
+            //如果用户email为空的话
+            if(empty($info->email)){
                 $result = array('code' => Constant::USER_ERROR, 'message' => Constant::getMsg(Constant::USER_ERROR));
                 return $result;
             }
-
+            //验证密码是否输入正确
+            $flag = password_verify($password,$info->password);
+            if(!$flag){
+                $result = array('code' => Constant::USER_ERROR, 'message' => Constant::getMsg(Constant::USER_ERROR));
+                return $result;
+            }
+            //将用户的id存入session
+            session(['userId' => $info->id]);
+            $result = array('code' => Constant::SUCCESS, 'message' => Constant::getMsg(Constant::SUCCESS));
+            return $result;
+            //TODO:可以将用户登录后的时间orip记录
         } catch (\Exception $e) {
             $result = array('code' => Constant::UNKNOWN_ERROR, 'message' => Constant::getMsg(Constant::UNKNOWN_ERROR));
             return $result;
