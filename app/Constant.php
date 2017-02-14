@@ -20,7 +20,8 @@ class Constant
         self::SUCCESS => '成功',
         self::PARAM_REPEAT => '重复',
         self::USER_ERROR => '用户名或密码错误',
-        self::SESSION_OVERTIME => '信息过期'
+        self::SESSION_OVERTIME => '信息过期',
+        self::UNKNOWN_ERROR => '未知错误'
     );
 
     public static function getMsg($exceptionCode)

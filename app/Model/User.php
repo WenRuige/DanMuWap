@@ -6,6 +6,7 @@
  * Time: 上午9:07
  */
 namespace App\Model;
+
 use DB;
 use Illuminate\Database\Eloquent\Model;
 
@@ -26,9 +27,9 @@ class User extends Model
     //检查用户名是否存在
     public function checkEmail($email)
     {
-        $query = DB::table('users')->where('email', $email)->first();
-        return $query;
+        return DB::table('users')->where('email', $email)->first();
     }
+
     //注册一个账户 @return true / false
     public function registerAccount($email, $password)
     {
@@ -41,6 +42,18 @@ class User extends Model
     public function checkIsRegister($email)
     {
         return DB::table('users')->where('email', $email)->value('email');
+    }
+
+    //更新用户信息
+    public function updateUserInformation($userId, $data)
+    {
+        return DB::table('users')->where('id', $userId)->update($data);
+    }
+
+    //获取用户信息
+    public function getUserInformation($userId)
+    {
+        return DB::table('users')->where('id', $userId)->first();
     }
 
 

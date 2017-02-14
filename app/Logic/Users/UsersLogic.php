@@ -6,7 +6,7 @@
  * Time: 下午1:56
  */
 //逻辑抽象层
-namespace App\Logic\UsersLogic;
+namespace App\Logic\Users;
 
 use App\Model\Register;
 use App\Model\User;
@@ -33,11 +33,47 @@ class UsersLogic
         try {
             //获取用户的userId
             $userId = $_SESSION['userId'];
-            if(empty($userId)){
+            if (empty($userId)) {
+                $result = array('code' => Constant::SESSION_OVERTIME, 'message' => Constant::getMsg(Constant::SESSION_OVERTIME));
+                return $result;
+            }
+            $info = User::getInstance()->updateUserInformation($userId, $data);
+            if (empty($info)) {
                 $result = array('code' => Constant::UNKNOWN_ERROR, 'message' => Constant::getMsg(Constant::UNKNOWN_ERROR));
                 return $result;
             }
-            $info = User::getInstance()->checkIsRegister($email);
+            $result = array('code' => Constant::SUCCESS, 'message' => Constant::getMsg(Constant::SUCCESS));
+            return $result;
+        } catch (\Exception $e) {
+            $result = array('code' => Constant::UNKNOWN_ERROR, 'message' => Constant::getMsg(Constant::UNKNOWN_ERROR));
+            return $result;
+            Log::error($e->getMessage() . Constant::getMsg(Constant::UNKNOWN_ERROR));
+        }
+    }
+
+    //获取用户详情
+    public function getUserInformation()
+    {
+        try {
+            $userId = $_SESSION['userId'];
+            if (empty($userId)) {
+                $result = array('code' => Constant::SESSION_OVERTIME, 'message' => Constant::getMsg(Constant::SESSION_OVERTIME));
+                return $result;
+            }
+            $info = User::getInstance()->getUserInformation($userId);
+            if (empty($info)) {
+                $result = array('code' => Constant::UNKNOWN_ERROR, 'message' => Constant::getMsg(Constant::UNKNOWN_ERROR));
+                return $result;
+            }
+            $res = ['nickname' => $info->nickname, 'introduce' => $info->introduce];
+
+            $result = array(
+                'code' => Constant::SUCCESS,
+                'data' => $res,
+                'message' => Constant::getMsg(Constant::SUCCESS)
+            );
+            return $result;
+
         } catch (\Exception $e) {
             $result = array('code' => Constant::UNKNOWN_ERROR, 'message' => Constant::getMsg(Constant::UNKNOWN_ERROR));
             return $result;

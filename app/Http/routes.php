@@ -42,6 +42,11 @@ $app->get('showAlterUserBlade', [
 $app->get('ajaxAlterUserInformation', [
     'as' => 'ajaxAlterUserInformation', 'uses' => 'Users\UsersController@ajaxAlterUserInformation'
 ]);
+//获取用户个人信息[接口]
+$app->get('ajaxGetUserInformation', [
+    'as' => 'ajaxGetUserInformation', 'uses' => 'Users\UsersController@ajaxGetUserInformation'
+]);
+
 //check路由
 $app->get('check','Index\IndexController@check');
 

@@ -4,24 +4,32 @@
 @endsection
 @section('content')
     <style>
-        #back{
+        #back {
             /*position:fixed;*/
             height: 50px;
             background-color: #ffffff;
             box-shadow: 0px 1px 3px rgba(34, 25, 25, 0.2);
         }
-        #back span{
+
+        #back span {
             margin-top: 15px;
             margin-left: 14px;
         }
-        #nav{
+
+        #nav {
             display: none;
         }
-        #app{
+
+        #app {
             margin-top: 10px;
             background-color: #ffffff;
         }
     </style>
+
+    <!-- test area -->
+
+    <!-- test area -->
+
     <!--重写nav -->
     <div id="back">
         <span class="glyphicon glyphicon-chevron-left"></span>后退
@@ -32,21 +40,21 @@
             <div class="form-group">
                 <label for="昵称" class="col-sm-5 control-label">昵称</label>
                 <div class="col-sm-8">
-                    <input v-model="nickname" type="text" class="form-control"  placeholder="昵称">
+                    <input v-model="nickname" type="text" class="form-control" placeholder="昵称">
                 </div>
             </div>
             <div class="form-group">
                 <label for="一句话介绍自己" class="col-sm-2 control-label">一句话介绍自己</label>
 
                 <div class="col-sm-10">
-                    <input v-model="introduce" type="text" class="form-control"  placeholder="一句话">
+                    <input v-model="introduce" type="text" class="form-control" placeholder="一句话">
                 </div>
             </div>
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
             <div class="col-sm-10">
-                <a  v-on:click="sub" type="button" class="btn btn-block btn-info btn-sm">提交</a>
+                <a v-on:click="sub" type="button" class="btn btn-block btn-info btn-sm">提交</a>
             </div>
         </div>
         <!-- /.box-footer -->
