@@ -99,7 +99,7 @@
 {{--</ul>--}}
 <div id="bottom" class="box-footer no-padding">
     <ul class="nav nav-stacked">
-        <li><a href="#"> <span class="pull-right"><i class="fa fa-fw fa-user"></i></span> &nbsp;</a></li>
+        <li><a href="/index"> <span class="pull-right"><i class="fa fa-fw fa-tachometer"></i></span> &nbsp;</a></li>
         <li><a href="#">  &nbsp;<span class="pull-right"><i class="fa fa-fw fa-user"></i></span> &nbsp;</a></li>
         <li><a href="/home">  &nbsp;<span class="pull-right"><i class="fa fa-fw fa-user"></i></span> &nbsp;</a></li>
     </ul>

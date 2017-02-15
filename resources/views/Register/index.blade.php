@@ -120,6 +120,7 @@
                         alert(res.message);
                     } else {
                         //注册成功后跳转
+                        window.location.href = "/home";
                     }
                 }, response => {
                     console.log(response);

@@ -17,8 +17,8 @@
         <div class="box box-widget widget-user">
             <!-- Add the bg color to the header using any of the bg-* classes -->
             <div class="widget-user-header bg-black" style="background: url('../dist/img/photo1.png') center center;">
-                <h3 class="widget-user-username">Elizabeth Pierce</h3>
-                <h5 class="widget-user-desc">Web Designer</h5>
+                <h3 class="widget-user-username">{{$data['nickname']}}</h3>
+                <h5 class="widget-user-desc">{{$data['introduce']}}</h5>
             </div>
             <div class="widget-user-image">
                 <img class="img-circle" src="../dist/img/user3-128x128.jpg" alt="User Avatar">
@@ -53,7 +53,7 @@
     </div>
     <div class="box-footer no-padding">
         <ul class="nav nav-stacked">
-            <li><a href="#">修改头像 <span class="pull-right"><i class="fa fa-fw fa-file-photo-o"></i></span></a></li>
+            <li><a href="/showAlterUserPhotoBlade">修改头像 <span class="pull-right"><i class="fa fa-fw fa-file-photo-o"></i></span></a></li>
             <li><a href="#">上传视频 <span class="pull-right"><i class="fa fa-fw fa-file-video-o"></i></span></a></li>
             <li><a href="/showAlterUserBlade">编辑个人信息 <span class="pull-right"><i class="fa fa-fw fa-male"></i></span></a></li>
             <li><a href="/logout">退出登录<span class="pull-right"><i class="fa fa-fw fa-power-off"></i></span></a></li>

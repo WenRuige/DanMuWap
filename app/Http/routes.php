@@ -46,6 +46,14 @@ $app->get('ajaxAlterUserInformation', [
 $app->get('ajaxGetUserInformation', [
     'as' => 'ajaxGetUserInformation', 'uses' => 'Users\UsersController@ajaxGetUserInformation'
 ]);
+//展示用户头像的模板界面
+$app->get('showAlterUserPhotoBlade', [
+    'as' => 'showAlterUserPhotoBlade', 'uses' => 'Users\UsersController@showAlterUserPhotoBlade'
+]);
+//上传头像路由
+$app->post('uploadPhoto', [
+    'as' => 'uploadPhoto', 'uses' => 'Users\UsersController@uploadPhoto'
+]);
 
 //check路由
 $app->get('check','Index\IndexController@check');

@@ -11,7 +11,6 @@ var user = new Vue({
         //创建的时候首先跑一遍接口
         this.$http.get('/ajaxGetUserInformation').then(response => {
             var res = response.body;
-            console.log(res);
             if (res.code != 0) {
                 alert(res.message);
 
@@ -23,7 +22,6 @@ var user = new Vue({
         }, response => {
             console.log(response);
         });
-        this.$data.nickname = '123'
     }, methods: {
         sub: function () {
             if (this.$data.nickname == '') {
@@ -45,6 +43,7 @@ var user = new Vue({
                     alert(res.message);
                 } else {
                     //注册成功后跳转
+                    window.location.href = "/home";
                 }
             }, response => {
                 console.log(response);

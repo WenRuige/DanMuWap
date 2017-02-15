@@ -8,8 +8,9 @@
 namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\Controller;
+use App\Logic\Users\UsersLogic;
 use Illuminate\Http\Request;
-
+use App\Constant;
 class HomeController extends Controller
 {
 
@@ -22,7 +23,13 @@ class HomeController extends Controller
     //展示个人中心界面(只做展示用)
     public function index()
     {
-        return view('Home.index');
+        $res = [];
+        $info = UsersLogic::getInstance()->getUserInformation();
+        if ($info['code'] == Constant::SUCCESS) {
+            $res['nickname'] = $info['data']['nickname'];
+            $res['introduce'] = $info['data']['introduce'];
+        }
+        return view('Home.index',['data' => $res]);
     }
 
 }

@@ -49,9 +49,22 @@ class UsersController extends Controller
     {
         $info = UsersLogic::getInstance()->getUserInformation();
         if ($info['code'] == Constant::SUCCESS) {
-            return response()->json(array('code' => Constant::SUCCESS, 'data'=> $info['data'],'message' => Constant::getMsg(Constant::SUCCESS)));
+            return response()->json(array('code' => Constant::SUCCESS, 'data' => $info['data'], 'message' => Constant::getMsg(Constant::SUCCESS)));
         } else {
-          //  return response()->json(array('code' => $info['code'], 'message' => Constant::getMsg($info['code'])));
+            //  return response()->json(array('code' => $info['code'], 'message' => Constant::getMsg($info['code'])));
         }
+    }
+
+    //展示修改用户个人头像
+    public function showAlterUserPhotoBlade()
+    {
+        return view('Users.uploadPhoto');
+    }
+
+    //上传用户头像
+    public function uploadPhoto(Request $request)
+    {
+        $file = $request->file('file');
+        dd($file);
     }
 }
