@@ -51,7 +51,7 @@ class UsersController extends Controller
         if ($info['code'] == Constant::SUCCESS) {
             return response()->json(array('code' => Constant::SUCCESS, 'data' => $info['data'], 'message' => Constant::getMsg(Constant::SUCCESS)));
         } else {
-            //  return response()->json(array('code' => $info['code'], 'message' => Constant::getMsg($info['code'])));
+            return response()->json(array('code' => $info['code'], 'message' => Constant::getMsg($info['code'])));
         }
     }
 
@@ -65,6 +65,13 @@ class UsersController extends Controller
     public function uploadPhoto(Request $request)
     {
         $file = $request->file('file');
+        //如果上传文件为空的话,直接返回失败
+        if (empty($file)) {
+            return redirect('home');
+        }
+        $info = UsersLogic::getInstance()->uploadPhoto();
         dd($file);
+        //if()
+        //dd($file);
     }
 }

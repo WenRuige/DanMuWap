@@ -26,7 +26,7 @@ class UsersLogic
             return new UsersLogic();
         }
     }
-
+    //TODO:将判断是否登录单独抽出到一个方法
     //存储用户信息
     public function storeUserInformation($data)
     {
@@ -74,6 +74,18 @@ class UsersLogic
             );
             return $result;
 
+        } catch (\Exception $e) {
+            $result = array('code' => Constant::UNKNOWN_ERROR, 'message' => Constant::getMsg(Constant::UNKNOWN_ERROR));
+            return $result;
+            Log::error($e->getMessage() . Constant::getMsg(Constant::UNKNOWN_ERROR));
+        }
+    }
+
+    //上传图片
+    public function uploadPhoto()
+    {
+        try {
+            $userId = $_SESSION['userId'];
         } catch (\Exception $e) {
             $result = array('code' => Constant::UNKNOWN_ERROR, 'message' => Constant::getMsg(Constant::UNKNOWN_ERROR));
             return $result;
