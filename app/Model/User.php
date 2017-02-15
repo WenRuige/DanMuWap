@@ -56,5 +56,11 @@ class User extends Model
         return DB::table('users')->where('id', $userId)->first();
     }
 
+    //更新用户的头像
+    public function updateUserPhoto($filename,$userId)
+    {
+        return DB::table('users')->where('id', $userId)->update(['photo' => $filename]);
+    }
+
 
 }

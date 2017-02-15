@@ -5,6 +5,7 @@ use App\Constant;
 use App\Http\Controllers\Controller;
 use App\Logic\Users\UsersLogic;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class UsersController extends Controller
 {
@@ -69,9 +70,11 @@ class UsersController extends Controller
         if (empty($file)) {
             return redirect('home');
         }
-        $info = UsersLogic::getInstance()->uploadPhoto();
-        dd($file);
-        //if()
-        //dd($file);
+        $filename = md5(date('Y-m-d H:i:s')) . '.jpg';
+        $request->file('file')[0]->move('picture/upload', $filename);
+        $info = UsersLogic::getInstance()->uploadPhoto($filename);
+        if ($info['code'] == Constant::SUCCESS) {
+            return redirect('home');
+        }
     }
 }

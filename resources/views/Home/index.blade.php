@@ -21,7 +21,7 @@
                 <h5 class="widget-user-desc">{{$data['introduce']}}</h5>
             </div>
             <div class="widget-user-image">
-                <img class="img-circle" src="../dist/img/user3-128x128.jpg" alt="User Avatar">
+                <img class="img-circle" style="height: 85px" src="{{url('picture/upload/'.$data['photo'])}}" alt="User Avatar">
             </div>
             <div class="box-footer">
                 <div class="col-xs-4 border-right">

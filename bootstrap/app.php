@@ -72,19 +72,6 @@ $app->singleton(
 
 //配置database
 $app->configure('database');
-
-$app->extend("session",function($obj)use($app){
-    $app->configure("session");
-    return $obj;
-});
-$app->alias("session",\Illuminate\Session\SessionManager::class);
-$app->register(\Illuminate\Session\SessionServiceProvider::class);
-
-$app->middleware([
-    \Illuminate\Session\Middleware\StartSession::class
-]);
-
-
 //注册MiddleWare,使用example中间件,所有的路由都会经过这层
 $app->middleware([
   //  App\Http\Middleware\Authority::class,
@@ -114,6 +101,7 @@ $app->register(App\Providers\AppServiceProvider::class);
 $app->register(App\Providers\ExampleServiceProvider::class);
 //注册redis服务提供者
 $app->register(Illuminate\Redis\RedisServiceProvider::class);
+//$app->register(Illuminate\filesystem\FilesystemServiceProvider::class);
 /*
 |--------------------------------------------------------------------------
 | Load The Application Routes

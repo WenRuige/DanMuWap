@@ -65,7 +65,7 @@ class UsersLogic
                 $result = array('code' => Constant::UNKNOWN_ERROR, 'message' => Constant::getMsg(Constant::UNKNOWN_ERROR));
                 return $result;
             }
-            $res = ['nickname' => $info->nickname, 'introduce' => $info->introduce];
+            $res = ['nickname' => $info->nickname, 'introduce' => $info->introduce,'photo' => $info->photo];
 
             $result = array(
                 'code' => Constant::SUCCESS,
@@ -82,10 +82,24 @@ class UsersLogic
     }
 
     //上传图片
-    public function uploadPhoto()
+    public function uploadPhoto($filename)
     {
         try {
             $userId = $_SESSION['userId'];
+            if (empty($userId)) {
+                $result = array('code' => Constant::SESSION_OVERTIME, 'message' => Constant::getMsg(Constant::SESSION_OVERTIME));
+                return $result;
+            }
+            $info = User::getInstance()->updateUserPhoto($filename, $userId);
+            if (empty($info)) {
+                $result = array('code' => Constant::UNKNOWN_ERROR, 'message' => Constant::getMsg(Constant::UNKNOWN_ERROR));
+                return $result;
+            }
+            $result = array(
+                'code' => Constant::SUCCESS,
+                'message' => Constant::getMsg(Constant::SUCCESS)
+            );
+            return $result;
         } catch (\Exception $e) {
             $result = array('code' => Constant::UNKNOWN_ERROR, 'message' => Constant::getMsg(Constant::UNKNOWN_ERROR));
             return $result;

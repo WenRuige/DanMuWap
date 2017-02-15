@@ -24,10 +24,13 @@ class HomeController extends Controller
     public function index()
     {
         $res = [];
+        //获取用户的个人信息
         $info = UsersLogic::getInstance()->getUserInformation();
+        //获取用户的头像
         if ($info['code'] == Constant::SUCCESS) {
             $res['nickname'] = $info['data']['nickname'];
             $res['introduce'] = $info['data']['introduce'];
+            $res['photo'] = $info['data']['photo'];
         }
         return view('Home.index',['data' => $res]);
     }
