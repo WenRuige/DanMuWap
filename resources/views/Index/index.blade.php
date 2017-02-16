@@ -4,8 +4,8 @@
     首页展示
 @endsection
 @section('content')
-    <link rel="stylesheet" href="../plugins/barrager/css/barrager.css">
-    <link rel="stylesheet" href="../plugins/sHover/css/example.css">
+    <link rel="stylesheet" href="{{url('/plugins/barrager/css/barrager.css')}}">
+    <link rel="stylesheet" href="{{url('/plugins/sHover/css/example.css')}}">
     <!-- 轮播图开始-->
     <div class="Carousel" style="margin-top: 1px;">
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -68,24 +68,24 @@
         }
     </style>
 
-
+@foreach($data as $value)
     <div id="video">
 
         <div class="user-block">
             <img class="img-circle img-bordered-sm" src="../../dist/img/user6-128x128.jpg" alt="User Image">
             <span class="username">
-                          <a href="#">Adam Jones</a>
+                          <a href="#">{{$value->nickname}}</a>
                           <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
                         </span>
-            <span class="description">Posted 5 photos - 5 days ago</span>
+            <span class="description">发布于 {{$value->create_time}}</span>
 
 
         </div>
         <div class="sHoverItem" style="margin-bottom:5px;border-bottom: 1px black solid">
             <img class="img-responsive" src="../../dist/img/photo1.png" alt="Photo">
             <span id="intro1" class="sIntro">
-					<h2>Movie</h2>
-					<p>Flowers are so inconsistent! But I was too young to know how to love her</p>
+					<h2>{{$value->name}}</h2>
+					<p>{{$value->content}}</p>
 					<button>点击查看视频</button>
 				</span>
 
@@ -97,122 +97,10 @@
         </div>
 
     </div>
-
-    <div id="video">
-
-        <div class="user-block">
-            <img class="img-circle img-bordered-sm" src="../../dist/img/user6-128x128.jpg" alt="User Image">
-            <span class="username">
-                          <a href="#">Adam Jones</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-            <span class="description">Posted 5 photos - 5 days ago</span>
-
-
-        </div>
-        <div class="sHoverItem" style="margin-bottom:5px;border-bottom: 1px black solid">
-            <img class="img-responsive" src="../../dist/img/photo1.png" alt="Photo">
-            <span id="intro1" class="sIntro">
-					<h2>Movie</h2>
-					<p>Flowers are so inconsistent! But I was too young to know how to love her</p>
-					<button>点击查看视频</button>
-				</span>
-
-        </div>
-        <div class="commet">
-            <a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a>
-            <a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-            <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments(5)</a>
-        </div>
-
-    </div>
-    <div id="video">
-
-        <div class="user-block">
-            <img class="img-circle img-bordered-sm" src="../../dist/img/user6-128x128.jpg" alt="User Image">
-            <span class="username">
-                          <a href="#">Adam Jones</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-            <span class="description">Posted 5 photos - 5 days ago</span>
-
-
-        </div>
-        <div class="sHoverItem" style="margin-bottom:5px;border-bottom: 1px black solid">
-            <img class="img-responsive" src="../../dist/img/photo1.png" alt="Photo">
-            <span id="intro1" class="sIntro">
-					<h2>Movie</h2>
-					<p>Flowers are so inconsistent! But I was too young to know how to love her</p>
-					<button>点击查看视频</button>
-				</span>
-
-        </div>
-        <div class="commet">
-            <a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a>
-            <a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-            <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments(5)</a>
-        </div>
-
-    </div>
-    <div id="video">
-
-        <div class="user-block">
-            <img class="img-circle img-bordered-sm" src="../../dist/img/user6-128x128.jpg" alt="User Image">
-            <span class="username">
-                          <a href="#">Adam Jones</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-            <span class="description">Posted 5 photos - 5 days ago</span>
-
-
-        </div>
-        <div class="sHoverItem" style="margin-bottom:5px;border-bottom: 1px black solid">
-            <img class="img-responsive" src="../../dist/img/photo1.png" alt="Photo">
-            <span id="intro1" class="sIntro">
-					<h2>Movie</h2>
-					<p>Flowers are so inconsistent! But I was too young to know how to love her</p>
-					<button>点击查看视频</button>
-				</span>
-
-        </div>
-        <div class="commet">
-            <a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a>
-            <a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-            <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments(5)</a>
-        </div>
-
-    </div>
-    <div id="video">
-
-        <div class="user-block">
-            <img class="img-circle img-bordered-sm" src="../../dist/img/user6-128x128.jpg" alt="User Image">
-            <span class="username">
-                          <a href="#">Adam Jones</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-            <span class="description">Posted 5 photos - 5 days ago</span>
-
-
-        </div>
-        <div class="sHoverItem" style="margin-bottom:5px;border-bottom: 1px black solid">
-            <img class="img-responsive" src="../../dist/img/photo1.png" alt="Photo">
-            <span id="intro1" class="sIntro">
-					<h2>Movie</h2>
-					<p>Flowers are so inconsistent! But I was too young to know how to love her</p>
-					<button>点击查看视频</button>
-				</span>
-
-        </div>
-        <div class="commet">
-            <a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a>
-            <a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-            <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments(5)</a>
-        </div>
-
-    </div>
+@endforeach
     <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
-    <script src="../plugins/barrager/js/jquery.barrager.min.js"></script>
-    <script src="../plugins/sHover/js/sHover.min.js"></script>
+    <script src="{{url('/plugins/barrager/js/jquery.barrager.min.js')}}"></script>
+    <script src="{{url('/plugins/sHover/js/sHover.min.js')}}"></script>
     <script>
         var a = new sHover("sHoverItem", "sIntro");
         a.set({

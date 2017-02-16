@@ -15,6 +15,7 @@ class Video extends Model
 
     private static $_instance;
     protected $tableName = 'video';
+
     public static function getInstance()
     {
         if (self::$_instance instanceof self) {
@@ -28,6 +29,12 @@ class Video extends Model
     public function uploadVideo($data)
     {
         return DB::table($this->tableName)->insert($data);
+    }
+
+    //获取视频
+    public function getVideo()
+    {
+        return DB::table($this->tableName)->get();
     }
 
 }
