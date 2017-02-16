@@ -43,7 +43,22 @@
             <div class="form-group">
                 <label for="视频名称" class="col-sm-5 control-label">填写您的视频简介</label>
                 <div class="col-sm-8">
-                    <textarea type="text" name="content" class="form-control" placeholder="昵称" required="required"></textarea>
+                    <textarea type="text" name="content" class="form-control" placeholder="昵称"
+                              required="required"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="上传您的视频封面" class="col-sm-5 control-label">上传您的视频封面</label>
+                <div class="col-sm-8">
+                    <input type="file" name="picture">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="上传您的视频封面" class="col-sm-5 control-label">SystemHelp</label>
+                <div class="col-sm-8">
+                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">系统生成gif
+                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">系统生成jpg
+
                 </div>
             </div>
             <div class="form-group">

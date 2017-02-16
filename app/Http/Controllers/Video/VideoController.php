@@ -18,9 +18,11 @@ class VideoController extends Controller
     {
         return view('Video.uploadVideo');
     }
-
+    //上传用户的视频
+    //TODO:上传完删除该文件,二次上传的时候删除该信息
     public function uploadVideo(Request $request)
     {
+
         $this->validate($request, [
                 'name' => 'required',
                 'content' => 'required'
@@ -31,10 +33,13 @@ class VideoController extends Controller
         if (empty($file)) {
             return redirect('home');
         }
-        $filename = md5(date('Y-m-d H:i:s')) . '.mp4';
-        $request->file('file')[0]->move('video/upload', $filename);
+        $filename = md5(date('Y-m-d H:i:s'));
+        $request->file('file')[0]->move('video/upload', $filename . '.mp4');
+        $request->file('picture')->move('video/cover', $filename . '.jpg');
+
+        $data['picture'] = $filename . '.jpg';
         $data['name'] = $request->name;
-        $data['video'] = $filename;
+        $data['video'] = $filename . '.mp4';
         $data['content'] = $request->content;
         $data['create_time'] = date("Y-m-d H:i:s");
         $data['user_id'] = $_SESSION['userId'];
