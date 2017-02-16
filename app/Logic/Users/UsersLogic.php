@@ -65,7 +65,7 @@ class UsersLogic
                 $result = array('code' => Constant::UNKNOWN_ERROR, 'message' => Constant::getMsg(Constant::UNKNOWN_ERROR));
                 return $result;
             }
-            $res = ['nickname' => $info->nickname, 'introduce' => $info->introduce,'photo' => $info->photo];
+            $res = ['nickname' => $info->nickname, 'introduce' => $info->introduce, 'photo' => $info->photo];
 
             $result = array(
                 'code' => Constant::SUCCESS,
@@ -91,6 +91,26 @@ class UsersLogic
                 return $result;
             }
             $info = User::getInstance()->updateUserPhoto($filename, $userId);
+            if (empty($info)) {
+                $result = array('code' => Constant::UNKNOWN_ERROR, 'message' => Constant::getMsg(Constant::UNKNOWN_ERROR));
+                return $result;
+            }
+            $result = array(
+                'code' => Constant::SUCCESS,
+                'message' => Constant::getMsg(Constant::SUCCESS)
+            );
+            return $result;
+        } catch (\Exception $e) {
+            $result = array('code' => Constant::UNKNOWN_ERROR, 'message' => Constant::getMsg(Constant::UNKNOWN_ERROR));
+            return $result;
+            Log::error($e->getMessage() . Constant::getMsg(Constant::UNKNOWN_ERROR));
+        }
+    }
+
+    public function uploadVideo($data)
+    {
+        try {
+            $info = User::getInstance()->uploadVideo($data);
             if (empty($info)) {
                 $result = array('code' => Constant::UNKNOWN_ERROR, 'message' => Constant::getMsg(Constant::UNKNOWN_ERROR));
                 return $result;

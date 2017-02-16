@@ -54,7 +54,7 @@
     <div class="box-footer no-padding">
         <ul class="nav nav-stacked">
             <li><a href="/showAlterUserPhotoBlade">修改头像 <span class="pull-right"><i class="fa fa-fw fa-file-photo-o"></i></span></a></li>
-            <li><a href="#">上传视频 <span class="pull-right"><i class="fa fa-fw fa-file-video-o"></i></span></a></li>
+            <li><a href="/showUploadVideo">上传视频 <span class="pull-right"><i class="fa fa-fw fa-file-video-o"></i></span></a></li>
             <li><a href="/showAlterUserBlade">编辑个人信息 <span class="pull-right"><i class="fa fa-fw fa-male"></i></span></a></li>
             <li><a href="/logout">退出登录<span class="pull-right"><i class="fa fa-fw fa-power-off"></i></span></a></li>
         </ul>

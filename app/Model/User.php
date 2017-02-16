@@ -9,7 +9,6 @@ namespace App\Model;
 
 use DB;
 use Illuminate\Database\Eloquent\Model;
-
 class User extends Model
 {
 
@@ -57,10 +56,8 @@ class User extends Model
     }
 
     //更新用户的头像
-    public function updateUserPhoto($filename,$userId)
+    public function updateUserPhoto($filename, $userId)
     {
         return DB::table('users')->where('id', $userId)->update(['photo' => $filename]);
     }
-
-
 }

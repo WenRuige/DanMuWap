@@ -54,6 +54,14 @@ $app->get('showAlterUserPhotoBlade', [
 $app->post('uploadPhoto', [
     'as' => 'uploadPhoto', 'uses' => 'Users\UsersController@uploadPhoto'
 ]);
+//上传视频模板界面
+$app->get('showUploadVideo', [
+    'as' => 'showUploadVideo', 'uses' => 'Video\VideoController@showUploadVideo'
+]);
+//上传视频
+$app->post('uploadVideo', [
+    'as' => 'uploadVideo', 'uses' => 'Video\VideoController@uploadVideo'
+]);
 
 //check路由
 $app->get('check','Index\IndexController@check');
