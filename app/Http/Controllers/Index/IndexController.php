@@ -37,7 +37,7 @@ class IndexController extends Controller
     }
 
     //首页展示
-    public function index(Request $request)
+    public function index()
     {
         //启用验证系统
         $res = [];
@@ -48,13 +48,6 @@ class IndexController extends Controller
             //如果返回不是成功的话,跳转到错误界面
             echo 'error';
         }
-        return view('Index.index',['data' => $res]);
+        return view('Index.index', ['data' => $res]);
     }
-
-    //视频页面测试
-    public function video()
-    {
-        return view('Video.index');
-    }
-
 }

@@ -23,6 +23,7 @@ class HomeController extends Controller
     //展示个人中心界面(只做展示用)
     public function index()
     {
+        //如果用户登录了,展示登录的信息
         $res = [];
         //获取用户的个人信息
         $info = UsersLogic::getInstance()->getUserInformation();

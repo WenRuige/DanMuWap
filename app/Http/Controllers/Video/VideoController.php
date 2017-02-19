@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Video;
 use App\Constant;
 use App\Http\Controllers\Controller;
 use App\Logic\Video\VideoLogic;
+use App\Model\Video;
 use Illuminate\Http\Request;
 
 
@@ -14,6 +15,20 @@ class VideoController extends Controller
         parent::__construct(true);
     }
 
+    //视频界面
+    public function video($id)
+    {
+        $res = [];
+        $info = VideoLogic::getInstance()->getVideo($id);
+        if ($info['code'] == Constant::SUCCESS) {
+            $res = $info['data'];
+        } else {
+            echo 'error';
+        }
+        return view('Video.index', ['data' => $res]);
+    }
+
+    //上传视频模板
     public function showUploadVideo()
     {
         return view('Video.uploadVideo');
@@ -34,6 +49,7 @@ class VideoController extends Controller
             return redirect('home');
         }
         $filename = md5(date('Y-m-d H:i:s'));
+        //支持多文件上传
         $request->file('file')[0]->move('video/upload', $filename . '.mp4');
         $request->file('picture')->move('video/cover', $filename . '.jpg');
 
@@ -48,4 +64,19 @@ class VideoController extends Controller
             return redirect('home');
         }
     }
+    //获取弹幕
+    public function getDanMu()
+    {
+        VideoLogic::getInstance()
+        //{ "text":"this is mother fucker ","color":"#ffffff","size":"1","position":"0","time":176}
+
+//        $json = '[';
+//        foreach($info as $key => $value){
+//            $json .= $info[$key]['content'].',';
+//        }
+//        $json = substr($json,0,-1);
+//        $json .= ']';
+    }
+
+
 }

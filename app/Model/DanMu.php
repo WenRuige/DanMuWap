@@ -10,11 +10,11 @@ namespace App\Model;
 use DB;
 use Illuminate\Database\Eloquent\Model;
 
-class Video extends Model
+class DanMu extends Model
 {
 
     private static $_instance;
-    protected $tableName = 'video';
+    protected $tableName = 'danmu';
 
     public static function getInstance()
     {

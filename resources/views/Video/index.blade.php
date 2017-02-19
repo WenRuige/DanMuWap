@@ -91,10 +91,10 @@
     <script src="../plugins/danmu/js/jquery.shCircleLoader.js"></script>
     <script>
         $("#danmup").DanmuPlayer({
-            src: "../video/ocean.mp4",
+            src: "{{url('video/upload/'.$data->video)}}",
             height: "30%", //区域的高度
             width: "100%", //区域的宽度
-            urlToGetDanmu: "/video/index/shootDanmu?id=" + $("#video_id").val(),
+            urlToGetDanmu: "/getDanMu?id={{$data->id}}",
             urlToPostDanmu: "/video/index/saveDanmu?id=" + $("#video_id").val()
         });
     </script>

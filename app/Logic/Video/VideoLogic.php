@@ -25,6 +25,7 @@ class VideoLogic
             return new VideoLogic();
         }
     }
+
     //TODO:将判断是否登录单独抽出到一个方法
     public function uploadVideo($data)
     {
@@ -36,6 +37,50 @@ class VideoLogic
             }
             $result = array(
                 'code' => Constant::SUCCESS,
+                'message' => Constant::getMsg(Constant::SUCCESS)
+            );
+            return $result;
+        } catch (\Exception $e) {
+            $result = array('code' => Constant::UNKNOWN_ERROR, 'message' => Constant::getMsg(Constant::UNKNOWN_ERROR));
+            return $result;
+            Log::error($e->getMessage() . Constant::getMsg(Constant::UNKNOWN_ERROR));
+        }
+    }
+
+    //通过视频Id来获取视频
+    public function getVideo($id)
+    {
+        try {
+            $info = Video::getInstance()->getVideoById($id);
+            if (empty($info)) {
+                $result = array('code' => Constant::UNKNOWN_ERROR, 'message' => Constant::getMsg(Constant::UNKNOWN_ERROR));
+                return $result;
+            }
+            $result = array(
+                'code' => Constant::SUCCESS,
+                'data' => $info,
+                'message' => Constant::getMsg(Constant::SUCCESS)
+            );
+            return $result;
+        } catch (\Exception $e) {
+            $result = array('code' => Constant::UNKNOWN_ERROR, 'message' => Constant::getMsg(Constant::UNKNOWN_ERROR));
+            return $result;
+            Log::error($e->getMessage() . Constant::getMsg(Constant::UNKNOWN_ERROR));
+        }
+    }
+
+    //通过视频id来获取弹幕
+    public function getDanmu($id)
+    {
+        try {
+            $info = Video::getInstance()->getDanMuById($id);
+            if (empty($info)) {
+                $result = array('code' => Constant::UNKNOWN_ERROR, 'message' => Constant::getMsg(Constant::UNKNOWN_ERROR));
+                return $result;
+            }
+            $result = array(
+                'code' => Constant::SUCCESS,
+                'data' => $info,
                 'message' => Constant::getMsg(Constant::SUCCESS)
             );
             return $result;
