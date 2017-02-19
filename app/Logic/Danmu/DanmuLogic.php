@@ -48,4 +48,19 @@ class DanmuLogic
         }
     }
 
+    //保存弹幕信息
+    public function saveDanmu($data)
+    {
+        try {
+            //获取用户的userId
+            $info = DanMu::getInstance()->saveDanmu($data);
+            $result = array('code' => Constant::SUCCESS, 'message' => Constant::getMsg(Constant::SUCCESS));
+            return $result;
+        } catch (\Exception $e) {
+            $result = array('code' => Constant::UNKNOWN_ERROR, 'message' => Constant::getMsg(Constant::UNKNOWN_ERROR));
+            return $result;
+            Log::error($e->getMessage() . Constant::getMsg(Constant::UNKNOWN_ERROR));
+        }
+    }
+
 }

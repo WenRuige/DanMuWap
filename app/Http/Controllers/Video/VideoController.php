@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Video;
 
 use App\Constant;
 use App\Http\Controllers\Controller;
+use App\Logic\Users\UsersLogic;
 use App\Logic\Video\VideoLogic;
 use App\Model\Video;
 use Illuminate\Http\Request;
@@ -20,10 +21,15 @@ class VideoController extends Controller
     {
         $res = [];
         $info = VideoLogic::getInstance()->getVideo($id);
+        //获取用户相关信息
+        $userInfo = UsersLogic::getInstance()->getUserInformationByVideoId($info['data']->user_id);
         if ($info['code'] == Constant::SUCCESS) {
-            $res = $info['data'];
+            $res['video'] = $info['data'];
         } else {
             echo 'error';
+        }
+        if($userInfo['code'] == Constant::SUCCESS){
+            $res['user'] = $userInfo['data'];
         }
         return view('Video.index', ['data' => $res]);
     }
@@ -63,19 +69,6 @@ class VideoController extends Controller
         if ($info['code'] == Constant::SUCCESS) {
             return redirect('home');
         }
-    }
-    //获取弹幕
-    public function getDanMu()
-    {
-        //VideoLogic::getInstance()
-        //{ "text":"this is mother fucker ","color":"#ffffff","size":"1","position":"0","time":176}
-
-//        $json = '[';
-//        foreach($info as $key => $value){
-//            $json .= $info[$key]['content'].',';
-//        }
-//        $json = substr($json,0,-1);
-//        $json .= ']';
     }
 
 

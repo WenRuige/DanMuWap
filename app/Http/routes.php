@@ -65,9 +65,14 @@ $app->post('uploadVideo', [
 ]);
 //获取弹幕
 $app->get('getDanMu/{id}', 'Danmu\DanmuController@getDanMu');
-//check路由
-$app->get('check', 'Index\IndexController@check');
-
+//发送弹幕
+$app->post('shootDanMu', [
+    'as' => 'shootDanMu', 'uses' => 'Danmu\DanmuController@shootDanMu'
+]);
+//拉取评论列表
+$app->get('ajaxGetCommentList', [
+    'as' => 'ajaxGetCommentList', 'uses' => 'Comment\CommentController@ajaxGetCommentList'
+]);
 //使用中间件
 $app->group(['middleware' => 'auth'], function () use ($app) {
     $app->get("middle", function () {

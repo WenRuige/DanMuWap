@@ -87,6 +87,7 @@
 <!-- 引入vue.js-->
 <script src="{{url('/vue/vue.js')}}"></script>
 <script src="{{url('/vue/vue-resource.js')}}"></script>
+<script src="{{url('/vue/vue-router.js')}}"></script>
 <!-- 引入vue.js结束-->
 <div class="main">
     @yield('content')

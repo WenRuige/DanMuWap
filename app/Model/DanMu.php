@@ -30,5 +30,10 @@ class DanMu extends Model
     {
         return DB::table($this->tableName)->where('video_id', '=', $id)->get();
     }
+    //保存弹幕信息
+    public function saveDanmu($data)
+    {
+        return DB::table($this->tableName)->insert($data);
+    }
 
 }

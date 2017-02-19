@@ -86,7 +86,7 @@
             <span id="intro1" class="sIntro">
 					<h2>{{$value->name}}</h2>
 					<p>{{$value->content}}</p>
-                <button><a href="">点击查看视频</a></button>
+                <button><a href="videos/{{$value->id}}">点击查看视频</a></button>
 				</span>
 
         </div>

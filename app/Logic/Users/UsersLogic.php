@@ -107,5 +107,29 @@ class UsersLogic
         }
     }
 
+    //通过视频id来获取相关的用户信息
+    public function getUserInformationByVideoId($userId)
+    {
+        try {
+
+            $info = User::getInstance()->getUserInformation($userId);
+            if (empty($info)) {
+                $result = array('code' => Constant::UNKNOWN_ERROR,'message' => Constant::getMsg(Constant::UNKNOWN_ERROR));
+                return $result;
+            }
+            $result = array(
+                'code' => Constant::SUCCESS,
+                'message' => Constant::getMsg(Constant::SUCCESS),
+                'data' => $info
+            );
+            return $result;
+        } catch (\Exception $e) {
+            $result = array('code' => Constant::UNKNOWN_ERROR, 'message' => Constant::getMsg(Constant::UNKNOWN_ERROR));
+            return $result;
+            Log::error($e->getMessage() . Constant::getMsg(Constant::UNKNOWN_ERROR));
+        }
+
+    }
+
 
 }
