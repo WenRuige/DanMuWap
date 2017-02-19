@@ -24,7 +24,18 @@ class Comment extends Model
             return new self();
         }
     }
+
     //拉取评论列表
+    public function getCommentByVideoId($id)
+    {
+        return DB::table($this->tableName)->where('video_id', '=', $id)->get();
+    }
+
+    //插入一条评论信息
+    public function insertComment($data)
+    {
+        return DB::table($this->tableName)->insert($data);
+    }
 
 
 }

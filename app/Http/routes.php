@@ -73,6 +73,10 @@ $app->post('shootDanMu', [
 $app->get('ajaxGetCommentList', [
     'as' => 'ajaxGetCommentList', 'uses' => 'Comment\CommentController@ajaxGetCommentList'
 ]);
+//添加评论信息
+$app->get('ajaxAddCommentList', [
+    'as' => 'ajaxAddCommentList', 'uses' => 'Comment\CommentController@ajaxAddCommentList'
+]);
 //使用中间件
 $app->group(['middleware' => 'auth'], function () use ($app) {
     $app->get("middle", function () {

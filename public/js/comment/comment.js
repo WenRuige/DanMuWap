@@ -1,5 +1,9 @@
 var comment = new Vue({
     el: "#app",
+    data: {
+        items: [],
+        input:''
+    },
     created: function () {
         //拉取模板列表
         //获取url的pathname
@@ -17,11 +21,33 @@ var comment = new Vue({
             if (res.code != 0) {
                 alert(res.message);
             } else {
-                //注册成功后跳转
-                window.location.href = "/home";
+                res.data.forEach(function (value, index, array) {
+                    //后期图片Url处理
+                    value.photo = '../picture/upload/' + value.photo;
+                    comment.items.push(value);
+                });
             }
         }, response => {
             console.log(response);
         });
+    }, methods: {
+        sub: function () {
+            this.$http.get('/ajaxAddCommentList', {
+                    params: {
+                        'comment': this.$data.input,
+                        'video_id':location.pathname.split('/')[2]
+                    }
+                }
+            ).then(response => {
+                var res = response.body;
+                if (res.code != 0) {
+                    alert(res.message);
+                } else {
+                    window.location.reload();
+                }
+            }, response => {
+                console.log(response);
+            });
+        }
     }
 })
