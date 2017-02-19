@@ -32,7 +32,7 @@
 
     <!--重写nav -->
     <div id="back">
-        <span class="glyphicon glyphicon-chevron-left"></span>后退
+        <span class="glyphicon glyphicon-chevron-left"></span><a href='javascript:history.go(-1)'>后退</a>
     </div>
     <div id="app">
         <code>完善您的个人信息</code>

@@ -64,7 +64,7 @@ $app->post('uploadVideo', [
     'as' => 'uploadVideo', 'uses' => 'Video\VideoController@uploadVideo'
 ]);
 //获取弹幕
-$app->get('getDanMu', 'Video\VideoController@getDanMu');
+$app->get('getDanMu/{id}', 'Danmu\DanmuController@getDanMu');
 //check路由
 $app->get('check', 'Index\IndexController@check');
 

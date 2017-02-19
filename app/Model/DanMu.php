@@ -25,21 +25,10 @@ class DanMu extends Model
         }
     }
 
-    //上传视频，插入一条数据
-    public function uploadVideo($data)
+    //通过id来获取弹幕
+    public function getDanmu($id)
     {
-        return DB::table($this->tableName)->insert($data);
+        return DB::table($this->tableName)->where('video_id', '=', $id)->get();
     }
 
-    //获取视频
-    public function getVideo()
-    {
-        return DB::table($this->tableName)->get();
-    }
-
-    //获取视频相关信息
-    public function getVideoById($id)
-    {
-        return DB::table($this->tableName)->where('id', $id)->first();
-    }
 }

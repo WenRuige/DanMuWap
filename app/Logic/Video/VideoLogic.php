@@ -69,26 +69,4 @@ class VideoLogic
         }
     }
 
-    //通过视频id来获取弹幕
-    public function getDanmu($id)
-    {
-        try {
-            $info = Video::getInstance()->getDanMuById($id);
-            if (empty($info)) {
-                $result = array('code' => Constant::UNKNOWN_ERROR, 'message' => Constant::getMsg(Constant::UNKNOWN_ERROR));
-                return $result;
-            }
-            $result = array(
-                'code' => Constant::SUCCESS,
-                'data' => $info,
-                'message' => Constant::getMsg(Constant::SUCCESS)
-            );
-            return $result;
-        } catch (\Exception $e) {
-            $result = array('code' => Constant::UNKNOWN_ERROR, 'message' => Constant::getMsg(Constant::UNKNOWN_ERROR));
-            return $result;
-            Log::error($e->getMessage() . Constant::getMsg(Constant::UNKNOWN_ERROR));
-        }
-    }
-
 }

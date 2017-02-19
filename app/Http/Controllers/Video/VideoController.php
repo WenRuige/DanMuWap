@@ -67,7 +67,7 @@ class VideoController extends Controller
     //获取弹幕
     public function getDanMu()
     {
-        VideoLogic::getInstance()
+        //VideoLogic::getInstance()
         //{ "text":"this is mother fucker ","color":"#ffffff","size":"1","position":"0","time":176}
 
 //        $json = '[';

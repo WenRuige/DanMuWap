@@ -94,7 +94,7 @@
             src: "{{url('video/upload/'.$data->video)}}",
             height: "30%", //区域的高度
             width: "100%", //区域的宽度
-            urlToGetDanmu: "/getDanMu?id={{$data->id}}",
+            urlToGetDanmu: "/getDanMu/{{$data->id}}",
             urlToPostDanmu: "/video/index/saveDanmu?id=" + $("#video_id").val()
         });
     </script>
