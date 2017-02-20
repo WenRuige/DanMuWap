@@ -16,11 +16,6 @@ use Log;
 class CommentController extends Controller
 {
 
-    //个人中心界面需要登录
-    public function __construct()
-    {
-        parent::__construct(false);
-    }
 
     //ajax拉取评论列表
     public function ajaxGetCommentList(Request $request)
@@ -35,14 +30,15 @@ class CommentController extends Controller
             return response()->json(array('code' => $info['code'], 'message' => Constant::getMsg($info['code'])));
         }
     }
+
     //添加一条评论
     public function ajaxAddCommentList(Request $request)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'comment' => 'required',
             'video_id' => 'required'
         ]);
-        $info = CommentLogic::getInstance()->insertComment($request->comment,$request->video_id);
+        $info = CommentLogic::getInstance()->insertComment($request->comment, $request->video_id);
         if ($info['code'] == Constant::SUCCESS) {
             return response()->json(array('code' => Constant::SUCCESS, 'data' => $info['data'], 'message' => Constant::getMsg(Constant::SUCCESS)));
         } else {

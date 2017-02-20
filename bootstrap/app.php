@@ -78,9 +78,9 @@ $app->middleware([
 ]);
 
 //如果是路由中间件的话,那么使用 'key' => 'value' 的形式进行注册
+//注册路由中间件,控制用户是否登录
 $app->routeMiddleware([
-    'auth' => App\Http\Middleware\Authenticate::class,
-    'example' => App\Http\Middleware\ExampleMiddleware::class
+    'auth' => App\Http\Middleware\Authority::class,
 ]);
 
 /*

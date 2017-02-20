@@ -10,19 +10,22 @@
 | and give it the Closure to call when that URI is requested.
 |
 */
+$app->group(['middleware' => 'auth'], function () use ($app) {
+    //退出路由
+    $app->get('logout', [
+        'as' => 'logout', 'uses' => 'Login\LoginController@Logout'
+    ]);
+});
 
 //注册模板路由
 $app->get('register', 'Register\RegisterController@index');
 //注册路由
-$app->get('ajaxRegisterAccount', 'Register\RegisterController@ajaxRegisterAccount');
+$app->get('ajaxRegisterAccount', ['middleware' => 'auth'],'Register\RegisterController@ajaxRegisterAccount');
 //登录模板路由
 $app->get('login', [
     'as' => 'login', 'uses' => 'Login\LoginController@index'
 ]);
-//退出路由
-$app->get('logout', [
-    'as' => 'logout', 'uses' => 'Login\LoginController@Logout'
-]);
+
 //登录路由
 $app->get('ajaxLogin', 'Login\LoginController@ajaxLogin');
 //展示首页

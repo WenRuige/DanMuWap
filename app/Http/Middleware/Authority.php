@@ -17,5 +17,6 @@ class Authority
     public function handle($request, Closure $next)
     {
         //如果未登录的话,跳转至登录的路由
+        return $next($request);
     }
 }

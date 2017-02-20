@@ -11,10 +11,6 @@ use Illuminate\Http\Request;
 
 class VideoController extends Controller
 {
-    public function __construct()
-    {
-        parent::__construct(true);
-    }
 
     //视频界面
     public function video($id)
@@ -28,7 +24,7 @@ class VideoController extends Controller
         } else {
             echo 'error';
         }
-        if($userInfo['code'] == Constant::SUCCESS){
+        if ($userInfo['code'] == Constant::SUCCESS) {
             $res['user'] = $userInfo['data'];
         }
         return view('Video.index', ['data' => $res]);

@@ -19,12 +19,6 @@ class IndexController extends Controller
 {
 
 
-    //构造函数
-    public function __construct()
-    {
-        parent::__construct(false);
-    }
-
     //方法
     public function check()
     {

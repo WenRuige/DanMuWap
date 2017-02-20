@@ -9,16 +9,7 @@ use Illuminate\Support\Facades\Storage;
 
 class UsersController extends Controller
 {
-    public function __construct()
-    {
-        parent::__construct(true);
-    }
 
-    //展示用户个人中心界面
-    public function index()
-    {
-
-    }
 
     //展示修改用户信息的blade
     public function showAlterUserBlade()

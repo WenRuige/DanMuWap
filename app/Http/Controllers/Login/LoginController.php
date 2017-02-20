@@ -14,10 +14,6 @@ use App\Logic\Login\LoginLogic;
 
 class LoginController extends Controller
 {
-    public function __construct()
-    {
-        parent::__construct(false);
-    }
 
     public function index()
     {
