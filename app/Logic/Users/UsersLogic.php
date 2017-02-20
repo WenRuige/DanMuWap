@@ -26,17 +26,24 @@ class UsersLogic
             return new UsersLogic();
         }
     }
-    //TODO:将判断是否登录单独抽出到一个方法
+
+    //方法内检查是否登录
+    public function checkLogin()
+    {
+        $userId = $_SESSION['userId'];
+        if (empty($userId)) {
+            $result = array('code' => Constant::SESSION_OVERTIME, 'message' => Constant::getMsg(Constant::SESSION_OVERTIME));
+            return $result;
+        }
+        return $userId;
+    }
+
     //存储用户信息
     public function storeUserInformation($data)
     {
         try {
             //获取用户的userId
-            $userId = $_SESSION['userId'];
-            if (empty($userId)) {
-                $result = array('code' => Constant::SESSION_OVERTIME, 'message' => Constant::getMsg(Constant::SESSION_OVERTIME));
-                return $result;
-            }
+            $userId = $this->checkLogin();
             $info = User::getInstance()->updateUserInformation($userId, $data);
             if (empty($info)) {
                 $result = array('code' => Constant::UNKNOWN_ERROR, 'message' => Constant::getMsg(Constant::UNKNOWN_ERROR));
@@ -55,11 +62,7 @@ class UsersLogic
     public function getUserInformation()
     {
         try {
-            $userId = $_SESSION['userId'];
-            if (empty($userId)) {
-                $result = array('code' => Constant::SESSION_OVERTIME, 'message' => Constant::getMsg(Constant::SESSION_OVERTIME));
-                return $result;
-            }
+            $userId = $this->checkLogin();
             $info = User::getInstance()->getUserInformation($userId);
             if (empty($info)) {
                 $result = array('code' => Constant::UNKNOWN_ERROR, 'message' => Constant::getMsg(Constant::UNKNOWN_ERROR));
@@ -85,9 +88,13 @@ class UsersLogic
     public function uploadPhoto($filename)
     {
         try {
-            $userId = $_SESSION['userId'];
-            if (empty($userId)) {
-                $result = array('code' => Constant::SESSION_OVERTIME, 'message' => Constant::getMsg(Constant::SESSION_OVERTIME));
+            $userId = $this->checkLogin();
+            //通过Userid来获取相关信息
+            $oldUserimg = User::getInstance()->getUserInformation($userId)->photo;
+            //删除之前上传的图片记录
+            $res = unlink('picture/upload/' . $oldUserimg);
+            if (!$res) {
+                $result = array('code' => Constant::UNKNOWN_ERROR, 'message' => Constant::getMsg(Constant::UNKNOWN_ERROR));
                 return $result;
             }
             $info = User::getInstance()->updateUserPhoto($filename, $userId);
@@ -111,10 +118,9 @@ class UsersLogic
     public function getUserInformationByVideoId($userId)
     {
         try {
-
             $info = User::getInstance()->getUserInformation($userId);
             if (empty($info)) {
-                $result = array('code' => Constant::UNKNOWN_ERROR,'message' => Constant::getMsg(Constant::UNKNOWN_ERROR));
+                $result = array('code' => Constant::UNKNOWN_ERROR, 'message' => Constant::getMsg(Constant::UNKNOWN_ERROR));
                 return $result;
             }
             $result = array(
