@@ -85,6 +85,7 @@ class UsersLogic
     }
 
     //上传图片
+    //TODO:添加用户的创建时间和更新时间
     public function uploadPhoto($filename)
     {
         try {
