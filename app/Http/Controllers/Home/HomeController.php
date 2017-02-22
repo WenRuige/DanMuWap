@@ -33,10 +33,9 @@ class HomeController extends Controller
         } else if ($info['code'] == Constant::SESSION_OVERTIME) {
             $res['nickname'] = '无名氏';
             $res['introduce'] = '这个用户很懒';
-            $res['photo'] = '这个用户没头像呀';
+            //$res['photo'] = 'timg.jpeg';
         }
-        var_dump($info);die;
-       // return view('Home.index', ['data' => $res]);
+        return view('Home.index', ['data' => $res]);
     }
 
 }

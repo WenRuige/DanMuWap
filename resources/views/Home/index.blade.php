@@ -21,7 +21,9 @@
                 <h5 class="widget-user-desc">{{isset($data['introduce'])?$data['introduce']:'这个人很懒什么也没有写'}}</h5>
             </div>
             <div class="widget-user-image">
-                {{--<img class="img-circle" style="height: 85px" src="{{url('picture/upload/'.$data['photo'])}}" alt="User Avatar">--}}
+                @if(!empty($data['photo']))
+                <img class="img-circle" style="height: 85px" src="{{url('picture/upload/'.$data['photo'])}}" alt="User Avatar">
+                @endif
             </div>
             <div class="box-footer">
                 <div class="col-xs-4 border-right">
