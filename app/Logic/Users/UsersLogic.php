@@ -27,23 +27,16 @@ class UsersLogic
         }
     }
 
-    //方法内检查是否登录
-    public function checkLogin()
-    {
-        $userId = $_SESSION['userId'];
-        if (empty($userId)) {
-            $result = array('code' => Constant::SESSION_OVERTIME, 'message' => Constant::getMsg(Constant::SESSION_OVERTIME));
-            return $result;
-        }
-        return $userId;
-    }
-
     //存储用户信息
     public function storeUserInformation($data)
     {
         try {
             //获取用户的userId
-            $userId = $this->checkLogin();
+            $userId = isset($_SESSION['userId']) ? $_SESSION['userId'] : '';
+            if (empty($userId)) {
+                $result = array('code' => Constant::SESSION_OVERTIME, 'message' => Constant::getMsg(Constant::SESSION_OVERTIME));
+                return $result;
+            }
             $info = User::getInstance()->updateUserInformation($userId, $data);
             if (empty($info)) {
                 $result = array('code' => Constant::UNKNOWN_ERROR, 'message' => Constant::getMsg(Constant::UNKNOWN_ERROR));
@@ -62,7 +55,11 @@ class UsersLogic
     public function getUserInformation()
     {
         try {
-            $userId = $this->checkLogin();
+            $userId = isset($_SESSION['userId']) ? $_SESSION['userId'] : '';
+            if (empty($userId)) {
+                $result = array('code' => Constant::SESSION_OVERTIME, 'message' => Constant::getMsg(Constant::SESSION_OVERTIME));
+                return $result;
+            }
             $info = User::getInstance()->getUserInformation($userId);
             if (empty($info)) {
                 $result = array('code' => Constant::UNKNOWN_ERROR, 'message' => Constant::getMsg(Constant::UNKNOWN_ERROR));
@@ -89,7 +86,11 @@ class UsersLogic
     public function uploadPhoto($filename)
     {
         try {
-            $userId = $this->checkLogin();
+            $userId = isset($_SESSION['userId']) ? $_SESSION['userId'] : '';
+            if (empty($userId)) {
+                $result = array('code' => Constant::SESSION_OVERTIME, 'message' => Constant::getMsg(Constant::SESSION_OVERTIME));
+                return $result;
+            }
             //通过Userid来获取相关信息
             $oldUserimg = User::getInstance()->getUserInformation($userId)->photo;
             //删除之前上传的图片记录
