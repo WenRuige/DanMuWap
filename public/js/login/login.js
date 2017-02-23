@@ -26,6 +26,7 @@ var login = new Vue({
                     alert(res.message);
                 } else {
                     //注册成功后跳转
+                    window.location.href = '/index'
                 }
             }, response => {
                 console.log(response);

@@ -77,6 +77,6 @@
 <!-- 引入vue.js -->
 <script src="{{url('/vue/vue.js')}}"></script>
 <script src="{{url('/vue/vue-resource.js')}}"></script>
-<script src="{{url('js/user/user.js')}}"></script>
+<script src="{{url('js/login/login.js')}}"></script>
 </body>
 </html>
