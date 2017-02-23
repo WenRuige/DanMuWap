@@ -2,7 +2,8 @@ var comment = new Vue({
     el: "#app",
     data: {
         items: [],
-        input:''
+        input:'',
+        msg:'关注我'
     },
     created: function () {
         //拉取模板列表
@@ -48,6 +49,8 @@ var comment = new Vue({
             }, response => {
                 console.log(response);
             });
+        },follow:function () {
+            alert(1);
         }
     }
 })

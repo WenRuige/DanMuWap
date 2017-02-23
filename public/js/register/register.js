@@ -35,7 +35,7 @@ var register = new Vue({
                     alert(res.message);
                 } else {
                     //注册成功后跳转
-                    window.location.href = "/home";
+                    window.location.href = "/login";
                 }
             }, response => {
                 console.log(response);
