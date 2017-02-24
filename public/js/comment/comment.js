@@ -2,8 +2,8 @@ var comment = new Vue({
     el: "#app",
     data: {
         items: [],
-        input:'',
-        msg:'关注我'
+        input: '',
+        msg: '关注我'
     },
     created: function () {
         //拉取模板列表
@@ -31,12 +31,30 @@ var comment = new Vue({
         }, response => {
             console.log(response);
         });
+        this.$http.get('/ajaxCheckFollow', {
+                params: {
+                    'param': param,
+                }
+            }
+        ).then(response => {
+            var res = response.body;
+            if (res.code != 0) {
+                alert(res.message);
+            } else {
+                if (res.data != 0) {
+                    this.$data.msg = '已经关注'
+                }
+            }
+        }, response => {
+            console.log(response);
+        });
+
     }, methods: {
         sub: function () {
             this.$http.get('/ajaxAddCommentList', {
                     params: {
                         'comment': this.$data.input,
-                        'video_id':location.pathname.split('/')[2]
+                        'video_id': location.pathname.split('/')[2]
                     }
                 }
             ).then(response => {
@@ -49,8 +67,23 @@ var comment = new Vue({
             }, response => {
                 console.log(response);
             });
-        },follow:function () {
-            alert(1);
+        }, follow: function () {
+            this.$http.get('/ajaxFollowme', {
+                    params: {
+                        'comment': this.$data.input,
+                        'video_id': location.pathname.split('/')[2]
+                    }
+                }
+            ).then(response => {
+                var res = response.body;
+                if (res.code != 0) {
+                    alert(res.message);
+                } else {
+                    window.location.reload();
+                }
+            }, response => {
+                console.log(response);
+            });
         }
     }
 })

@@ -53,6 +53,14 @@ $app->group(['middleware' => 'auth'], function () use ($app) {
     $app->post('shootDanMu', [
         'as' => 'shootDanMu', 'uses' => 'Danmu\DanmuController@shootDanMu'
     ]);
+    $app->get('ajaxCheckFollow', [
+        'as' => 'ajaxCheckFollow', 'uses' => 'Follow\FollowController@ajaxCheckFollow'
+    ]);
+    $app->get('ajaxFollowme', [
+        'as' => 'ajaxFollowme', 'uses' => 'Follow\FollowController@ajaxFollowme'
+    ]);
+
+
 });
 
 //注册模板路由

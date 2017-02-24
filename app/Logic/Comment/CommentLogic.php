@@ -66,7 +66,7 @@ class CommentLogic
         } catch (\Exception $e) {
             $result = array('code' => Constant::UNKNOWN_ERROR, 'message' => Constant::getMsg(Constant::UNKNOWN_ERROR));
             return $result;
-            Log::error($e->getMessage() . Constant::getMsg(Constant::UNKNOWN_ERROR));
+            Log::error($e->getMessage().Constant::getMsg(Constant::UNKNOWN_ERROR));
         }
     }
 

@@ -15,11 +15,6 @@ use App\Logic\Register\RegisterLogic;
 
 class RegisterController extends Controller
 {
-    //加载初始化控制器,判断是否需要登录
-    public function __construct()
-    {
-        parent::__construct(false);
-    }
 
     public function index()
     {

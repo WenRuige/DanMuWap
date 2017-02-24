@@ -24,16 +24,22 @@ class Follow extends Model
             return new self();
         }
     }
+    //检查是否follow
+    public function checkFollow($param)
+    {
+        return DB::table($this->tableName)->where($param)->get();
+    }
 
-    //通过id来获取弹幕
-    public function getDanmu($id)
-    {
-        return DB::table($this->tableName)->where('video_id', '=', $id)->get();
-    }
-    //保存弹幕信息
-    public function saveDanmu($data)
-    {
-        return DB::table($this->tableName)->insert($data);
-    }
+//    //通过id来获取弹幕
+//    public function getDanmu($id)
+//    {
+//        return DB::table($this->tableName)->where('video_id', '=', $id)->get();
+//    }
+//
+//    //保存弹幕信息
+//    public function saveDanmu($data)
+//    {
+//        return DB::table($this->tableName)->insert($data);
+//    }
 
 }

@@ -68,62 +68,63 @@
         }
     </style>
 
-@foreach($data as $value)
-    <div id="video">
+    @foreach($data as $value)
+        <div id="video">
 
-        <div class="user-block">
-            <img class="img-circle img-bordered-sm" src="{{url('picture/upload/'.$value->photo)}}" alt="User Image">
-            <span class="username">
+            <div class="user-block">
+                <img class="img-circle img-bordered-sm" src="{{url('picture/upload/'.$value->photo)}}" alt="User Image">
+                <span class="username">
                           <a href="#">{{$value->nickname}}</a>
                           <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
                         </span>
-            <span class="description">发布于 {{$value->create_time}}</span>
+                <span class="description">发布于 {{$value->create_time}}</span>
 
 
-        </div>
-        <div class="sHoverItem" style="margin-bottom:5px;border-bottom: 1px black solid">
-            <img class="img-responsive" src="{{url('video/cover/'.$value->picture)}}" alt="Photo">
-            <span id="intro1" class="sIntro">
+            </div>
+            <div class="sHoverItem" style="margin-bottom:5px;border-bottom: 1px black solid">
+                <img class="img-responsive" src="{{url('video/cover/'.$value->picture)}}" alt="Photo">
+                <span id="intro1" class="sIntro">
 					<h2>{{$value->name}}</h2>
 					<p>{{$value->content}}</p>
                 <button><a href="videos/{{$value->id}}">点击查看视频</a></button>
 				</span>
 
+            </div>
+            <div class="commet">
+                <a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a>
+                <a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
+                <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments(5)</a>
+            </div>
+
         </div>
-        <div class="commet">
-            <a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a>
-            <a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-            <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments(5)</a>
-        </div>
-
-    </div>
-@endforeach
-    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
-    <script src="{{url('/plugins/barrager/js/jquery.barrager.min.js')}}"></script>
-    <script src="{{url('/plugins/sHover/js/sHover.min.js')}}"></script>
-    <script>
-        var a = new sHover("sHoverItem", "sIntro");
-        a.set({
-            slideSpeed: 5,
-            opacityChange: true,
-            opacity: 80
-        });
-    </script>
-    <script>
-        var item = {
-            img: '../123.jpg', //图片
-            info: '弹幕文字信息', //文字
-            href: 'http://www.baidu.com', //链接
-            close: false, //显示关闭按钮
-            speed: 10, //延迟,单位秒,默认6
-            bottom: 70, //距离底部高度,单位px,默认随机
-            color: 'gray', //颜色,默认白色
-            old_ie_color: '#000000', //ie低版兼容色,不能与网页背景相同,默认黑色
-        }
-        $('body').barrager(item);
-    </script>
+        @endforeach
+        </br></br></br></br>
+        <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+        <script src="{{url('/plugins/barrager/js/jquery.barrager.min.js')}}"></script>
+        <script src="{{url('/plugins/sHover/js/sHover.min.js')}}"></script>
+        <script>
+            var a = new sHover("sHoverItem", "sIntro");
+            a.set({
+                slideSpeed: 5,
+                opacityChange: true,
+                opacity: 80
+            });
+        </script>
+        <script>
+            var item = {
+                img: '../123.jpg', //图片
+                info: '弹幕文字信息', //文字
+                href: 'http://www.baidu.com', //链接
+                close: false, //显示关闭按钮
+                speed: 10, //延迟,单位秒,默认6
+                bottom: 70, //距离底部高度,单位px,默认随机
+                color: 'gray', //颜色,默认白色
+                old_ie_color: '#000000', //ie低版兼容色,不能与网页背景相同,默认黑色
+            }
+            $('body').barrager(item);
+        </script>
 
 
-    <!-- 轮播图结束-->
+        <!-- 轮播图结束-->
 
 @endsection

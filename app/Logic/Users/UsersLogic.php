@@ -93,11 +93,13 @@ class UsersLogic
             }
             //通过Userid来获取相关信息
             $oldUserimg = User::getInstance()->getUserInformation($userId)->photo;
-            //删除之前上传的图片记录
-            $res = unlink('picture/upload/' . $oldUserimg);
-            if (!$res) {
-                $result = array('code' => Constant::UNKNOWN_ERROR, 'message' => Constant::getMsg(Constant::UNKNOWN_ERROR));
-                return $result;
+            if (!empty($oldUserimg)) {
+                //删除之前上传的图片记录
+                $res = unlink('picture/upload/' . $oldUserimg);
+                if (!$res) {
+                    $result = array('code' => Constant::UNKNOWN_ERROR, 'message' => Constant::getMsg(Constant::UNKNOWN_ERROR));
+                    return $result;
+                }
             }
             $info = User::getInstance()->updateUserPhoto($filename, $userId);
             if (empty($info)) {
