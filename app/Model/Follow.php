@@ -24,10 +24,21 @@ class Follow extends Model
             return new self();
         }
     }
+
     //检查是否follow
     public function checkFollow($param)
     {
-        return DB::table($this->tableName)->where($param)->get();
+        return DB::table($this->tableName)->where($param)->value('id');
+    }
+
+    //插入一条关注信息
+    public function insertFollowInformation($data)
+    {
+        return DB::table($this->tableName)->insert($data);
+    }
+    //更新关注信息
+    public function updateFollowInformation($param,$where){
+        return DB::table($this->tableName)->where($param)->update($where);
     }
 
 //    //通过id来获取弹幕

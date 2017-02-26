@@ -56,8 +56,8 @@ $app->group(['middleware' => 'auth'], function () use ($app) {
     $app->get('ajaxCheckFollow', [
         'as' => 'ajaxCheckFollow', 'uses' => 'Follow\FollowController@ajaxCheckFollow'
     ]);
-    $app->get('ajaxFollowme', [
-        'as' => 'ajaxFollowme', 'uses' => 'Follow\FollowController@ajaxFollowme'
+    $app->get('ajaxFollow', [
+        'as' => 'ajaxFollow', 'uses' => 'Follow\FollowController@ajaxFollow'
     ]);
 
 

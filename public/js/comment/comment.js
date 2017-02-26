@@ -41,6 +41,7 @@ var comment = new Vue({
             if (res.code != 0) {
                 alert(res.message);
             } else {
+                console.log(res);
                 if (res.data != 0) {
                     this.$data.msg = '已经关注'
                 }
@@ -68,9 +69,8 @@ var comment = new Vue({
                 console.log(response);
             });
         }, follow: function () {
-            this.$http.get('/ajaxFollowme', {
+            this.$http.get('/ajaxFollow', {
                     params: {
-                        'comment': this.$data.input,
                         'video_id': location.pathname.split('/')[2]
                     }
                 }

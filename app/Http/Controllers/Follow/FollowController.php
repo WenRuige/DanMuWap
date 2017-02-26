@@ -25,13 +25,24 @@ class FollowController extends Controller
         $userInfo = VideoLogic::getInstance()->getVideo($request->param);
         $followInfo = FollowLogic::getInstance()->checkFollow($userInfo['data']->user_id);
         if ($followInfo['code'] == Constant::SUCCESS) {
-            return response()->json(array('code' => $followInfo['code'], 'message' => Constant::getMsg($followInfo['code']),'data' => $followInfo['data']));
-        }else{
+            return response()->json(array('code' => $followInfo['code'], 'message' => Constant::getMsg($followInfo['code']), 'data' => $followInfo['data']));
+        } else {
             return response()->json(array('code' => $followInfo['code'], 'message' => Constant::getMsg($followInfo['code'])));
         }
     }
-    //关注我
-    public function ajaxFollowme(){
 
+    //关注我or取关
+    public function ajaxFollow(Request $request)
+    {
+        $this->validate($request, [
+            'video_id' => 'required'
+        ]);
+        $userInfo = VideoLogic::getInstance()->getVideo($request->video_id);
+        $followInfo = FollowLogic::getInstance()->follow($userInfo['data']->user_id);
+        if ($followInfo['code'] == Constant::SUCCESS) {
+            return response()->json(array('code' => $followInfo['code'], 'message' => Constant::getMsg($followInfo['code']), 'data' => $followInfo['data']));
+        } else {
+            return response()->json(array('code' => $followInfo['code'], 'message' => Constant::getMsg($followInfo['code'])));
+        }
     }
 }
