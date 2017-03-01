@@ -8,7 +8,6 @@ try {
     //加载错误信息
     dd($e->getMessage());
 }
-
 /*
 |--------------------------------------------------------------------------
 | Create The Application
@@ -98,7 +97,6 @@ $app->routeMiddleware([
 $app->register(App\Providers\AppServiceProvider::class);
 //$app->register(App\Providers\AuthServiceProvider::class);
 //$app->register(App\Providers\EventServiceProvider::class);
-$app->register(App\Providers\ExampleServiceProvider::class);
 //注册redis服务提供者
 $app->register(Illuminate\Redis\RedisServiceProvider::class);
 //$app->register(Illuminate\filesystem\FilesystemServiceProvider::class);

@@ -14,25 +14,17 @@ use Illuminate\Http\Request;
 use App\Logic\Index\IndexLogic;
 use Cache;
 use Event;
+use core\Container;
+use core\Index\IndexService;
 
 class IndexController extends Controller
 {
-
-
-    //方法
-    public function check()
-    {
-        //加载Model类中的方法
-        Event::fire(new ExampleEvent());
-        //        $this->user->say();
-        Cache::put('key', 'value', 30);
-        $data = Cache::get('key');
-
-    }
-
     //首页展示
     public function index()
     {
+        IndexService::getInstance()->index();
+        $pd = Container::getMysql();
+        $data = $pd->from('users')->fetch();
         //启用验证系统
         $res = [];
         $info = IndexLogic::getInstance()->show();
