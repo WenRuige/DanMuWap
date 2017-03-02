@@ -7,15 +7,8 @@
  */
 namespace App\Http\Controllers\Index;
 
-use App\Constant;
-use App\Events\ExampleEvent;
 use App\Http\Controllers\Controller;
 use core\User\UserService;
-use Illuminate\Http\Request;
-use App\Logic\Index\IndexLogic;
-use Cache;
-use Event;
-use core\Container;
 use core\Index\IndexService;
 
 class IndexController extends Controller
@@ -24,20 +17,15 @@ class IndexController extends Controller
     public function index()
     {
         $videoInfo = IndexService::getInstance()->index();
-
-                UserService::getInstance()->getUserInformation();
-
-//        $pd = Container::getMysql();
-//        $data = $pd->from('users')->fetch();
-//        //启用验证系统
-//        $res = [];
-//        $info = IndexLogic::getInstance()->show();
-//        if ($info['code'] == Constant::SUCCESS) {
-//            $res = $info['data'];
-//        } else {
-//            //如果返回不是成功的话,跳转到错误界面
-//            echo 'error';
-//        }
-//        return view('Index.index', ['data' => $res]);
+        //如果视频内容不为空的话
+        if (!empty($videoInfo['data'])) {
+            foreach ($videoInfo['data'] as $key => $value) {
+                $userInfo = UserService::getInstance()->getUserInformation($value['user_id'], ['photo', 'nickname']);
+                if (!empty($userInfo['data'])) {
+                    $videoInfo['data'][$key] = array_merge($videoInfo['data'][$key], $userInfo['data']);
+                }
+            }
+        }
+        return view('Index.index', ['data' => $videoInfo['data']]);
     }
 }

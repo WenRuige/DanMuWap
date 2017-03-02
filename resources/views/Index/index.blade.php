@@ -72,21 +72,21 @@
         <div id="video">
 
             <div class="user-block">
-                <img class="img-circle img-bordered-sm" src="{{url('picture/upload/'.$value->photo)}}" alt="User Image">
+                <img class="img-circle img-bordered-sm" src="{{url('picture/upload/'.$value['photo'])}}" alt="User Image">
                 <span class="username">
-                          <a href="#">{{$value->nickname}}</a>
+                          <a href="#">{{$value['nickname']}}</a>
                           <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
                         </span>
-                <span class="description">发布于 {{$value->create_time}}</span>
+                <span class="description">发布于 {{$value['create_time']}}</span>
 
 
             </div>
             <div class="sHoverItem" style="margin-bottom:5px;border-bottom: 1px black solid">
-                <img class="img-responsive" src="{{url('video/cover/'.$value->picture)}}" alt="Photo">
+                <img class="img-responsive" src="{{url('video/cover/'.$value['picture'])}}" alt="Photo">
                 <span id="intro1" class="sIntro">
-					<h2>{{$value->name}}</h2>
-					<p>{{$value->content}}</p>
-                <button><a href="videos/{{$value->id}}">点击查看视频</a></button>
+					<h2>{{$value['name']}}</h2>
+					<p>{{$value['content']}}</p>
+                <button><a href="videos/{{$value['id']}}">点击查看视频</a></button>
 				</span>
 
             </div>
