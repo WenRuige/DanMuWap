@@ -1,11 +1,12 @@
 <?php
 namespace App\Http\Controllers\Users;
 
-use App\Constant;
+use core\Constant;
 use App\Http\Controllers\Controller;
 use App\Logic\Users\UsersLogic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use core\User\UserService;
 
 class UsersController extends Controller
 {
@@ -27,11 +28,11 @@ class UsersController extends Controller
         $data['nickname'] = $request->input('nickname');
         $data['introduce'] = $request->input('introduce');
         //获取用户的session id
-        $info = UsersLogic::getInstance()->storeUserInformation($data);
-        if ($info['code'] == Constant::SUCCESS) {
+        $userInfo = UserService::getInstance()->storeUserInformation($data);
+        if (!empty($userInfo)) {
             return response()->json(array('code' => Constant::SUCCESS, 'message' => Constant::getMsg(Constant::SUCCESS)));
         } else {
-            return response()->json(array('code' => $info['code'], 'message' => Constant::getMsg($info['code'])));
+            return response()->json(array('code' => Constant::UNKNOWN_ERROR, 'message' => Constant::getMsg(Constant::UNKNOWN_ERROR)));
         }
 
     }
@@ -39,8 +40,9 @@ class UsersController extends Controller
     //获取用户的填写的信息
     public function ajaxGetUserInformation()
     {
-        $info = UsersLogic::getInstance()->getUserInformation();
-        if ($info['code'] == Constant::SUCCESS) {
+        $uid = isset($_SESSION['userId']) ? $_SESSION['userId'] : '';
+        $info = UserService::getInstance()->getUserInformation($uid,['nickname','introduce']);
+        if (!empty($info)) {
             return response()->json(array('code' => Constant::SUCCESS, 'data' => $info['data'], 'message' => Constant::getMsg(Constant::SUCCESS)));
         } else {
             return response()->json(array('code' => $info['code'], 'message' => Constant::getMsg($info['code'])));
@@ -63,8 +65,8 @@ class UsersController extends Controller
         }
         $filename = md5(date('Y-m-d H:i:s')) . '.jpg';
         $request->file('file')[0]->move('picture/upload', $filename);
-        $info = UsersLogic::getInstance()->uploadPhoto($filename);
-        if ($info['code'] == Constant::SUCCESS) {
+        $userInfo = UserService::getInstance()->uploadPhoto($filename);
+        if (!empty($userInfo['data'])) {
             return redirect('home');
         }
     }
