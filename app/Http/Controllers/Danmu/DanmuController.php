@@ -9,9 +9,10 @@ namespace App\Http\Controllers\Danmu;
 
 use App\Http\Controllers\Controller;
 use App\Logic\Danmu\DanmuLogic;
+use core\DanMu\DanMuService;
 use Illuminate\Http\Request;
-use App\Constant;
-use Log;
+use core\Constant;
+use core\Container;
 
 class DanmuController extends Controller
 {
@@ -24,6 +25,7 @@ class DanmuController extends Controller
             echo 'error';
             die;
         }
+        DanMuService::getInstance()->getDanMu($id);
         $info = DanmuLogic::getInstance()->getDanmu($id);
         if ($info['code'] == Constant::SUCCESS) {
             echo $info['data'];
@@ -41,9 +43,9 @@ class DanmuController extends Controller
         $data['video_id'] = $request->id;
         $data['content'] = $request->danmu;
         $data['create_time'] = date('Y-m-d H:i:s');
-        $danmuInfo = DanmuLogic::getInstance()->saveDanmu($data);
+        $danmuInfo = DanMuService::getInstance()->shootDanMu($data);
         if ($danmuInfo['code'] != Constant::SUCCESS) {
-            Log::error('there is an error');
+            Container::log('error', json_encode($data));
         }
     }
 }

@@ -8,29 +8,7 @@ try {
     //加载错误信息
     dd($e->getMessage());
 }
-<<<<<<< HEAD
 
-
-
-function serviceAutoload($className)
-{
-    $nameArr = explode('\\', $className);
-    if($nameArr[0] == 'Dtb')
-    {
-        $filePath= SERVICE_PATH.'/'.implode(DIRECTORY_SEPARATOR,$nameArr).'.php';
-        if(file_exists($filePath))
-        {
-            require_once $filePath;
-            return true;
-        }
-    }
-    return false;
-}
-
-spl_autoload_register("serviceAutoload");
-
-=======
->>>>>>> 60829bc0f2c813b316e4a1329faff367a6a237c5
 /*
 |--------------------------------------------------------------------------
 | Create The Application

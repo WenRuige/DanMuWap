@@ -56,10 +56,7 @@ class VideoController extends Controller
         $data['content'] = $request->content;
         $data['create_time'] = date("Y-m-d H:i:s");
         $data['user_id'] = $_SESSION['userId'];
-        dd($data);
-
-        VideoService::getInstance()->uploadVideo();
-       // $info = VideoLogic::getInstance()->uploadVideo($data);
+        $info = VideoService::getInstance()->uploadVideo($data);
         if ($info['code'] == Constant::SUCCESS) {
             return redirect('home');
         }
