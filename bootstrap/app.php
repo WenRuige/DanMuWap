@@ -9,6 +9,25 @@ try {
     dd($e->getMessage());
 }
 
+
+
+function serviceAutoload($className)
+{
+    $nameArr = explode('\\', $className);
+    if($nameArr[0] == 'Dtb')
+    {
+        $filePath= SERVICE_PATH.'/'.implode(DIRECTORY_SEPARATOR,$nameArr).'.php';
+        if(file_exists($filePath))
+        {
+            require_once $filePath;
+            return true;
+        }
+    }
+    return false;
+}
+
+spl_autoload_register("serviceAutoload");
+
 /*
 |--------------------------------------------------------------------------
 | Create The Application
