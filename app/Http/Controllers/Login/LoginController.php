@@ -7,10 +7,11 @@
  */
 namespace App\Http\Controllers\Login;
 
-use App\Constant;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Logic\Login\LoginLogic;
+use core\User\UserService;
+use core\Constant;
 
 class LoginController extends Controller
 {
@@ -29,11 +30,11 @@ class LoginController extends Controller
         ]);
         $email = $request->input('email');
         $password = $request->input('password');
-        $info = LoginLogic::getInstance()->login($email, $password);
-        if ($info['code'] == Constant::SUCCESS) {
+        $userInfo = UserService::getInstance()->login($email, $password);
+        if (!empty($userInfo['data'])) {
             return response()->json(array('code' => Constant::SUCCESS, 'message' => Constant::getMsg(Constant::SUCCESS)));
         } else {
-            return response()->json(array('code' => $info['code'], 'message' => Constant::getMsg($info['code'])));
+            return response()->json(array('code' => Constant::USER_ERROR, 'message' => Constant::getMsg(Constant::USER_ERROR)));
         }
     }
 

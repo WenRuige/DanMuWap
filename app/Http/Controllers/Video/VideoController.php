@@ -3,11 +3,11 @@ namespace App\Http\Controllers\Video;
 
 use App\Constant;
 use App\Http\Controllers\Controller;
-use App\Logic\Users\UsersLogic;
 use App\Logic\Video\VideoLogic;
 use App\Model\Video;
+use core\User\UserService;
 use Illuminate\Http\Request;
-
+use core\Video\VideoService;
 
 class VideoController extends Controller
 {
@@ -15,19 +15,15 @@ class VideoController extends Controller
     //视频界面
     public function video($id)
     {
-        $res = [];
-        $info = VideoLogic::getInstance()->getVideo($id);
-        //获取用户相关信息
-        $userInfo = UsersLogic::getInstance()->getUserInformationByVideoId($info['data']->user_id);
-        if ($info['code'] == Constant::SUCCESS) {
-            $res['video'] = $info['data'];
-        } else {
-            echo 'error';
+
+        $videoInfo = VideoService::getInstance()->getVideoById($id);
+        if (!empty($videoInfo['data'])) {
+            $userInfo = UserService::getInstance()->getUserInformation($videoInfo['data']['user_id'], ['introduce', 'nickname', 'photo']);
+            if (!empty($userInfo)) {
+                $videoInfo['data'] = array_merge($videoInfo['data'], $userInfo['data']);
+            }
         }
-        if ($userInfo['code'] == Constant::SUCCESS) {
-            $res['user'] = $userInfo['data'];
-        }
-        return view('Video.index', ['data' => $res]);
+        return view('Video.index', ['data' => $videoInfo['data']]);
     }
 
     //上传视频模板
@@ -54,14 +50,16 @@ class VideoController extends Controller
         //支持多文件上传
         $request->file('file')[0]->move('video/upload', $filename . '.mp4');
         $request->file('picture')->move('video/cover', $filename . '.jpg');
-
         $data['picture'] = $filename . '.jpg';
         $data['name'] = $request->name;
         $data['video'] = $filename . '.mp4';
         $data['content'] = $request->content;
         $data['create_time'] = date("Y-m-d H:i:s");
         $data['user_id'] = $_SESSION['userId'];
-        $info = VideoLogic::getInstance()->uploadVideo($data);
+        dd($data);
+
+        VideoService::getInstance()->uploadVideo();
+       // $info = VideoLogic::getInstance()->uploadVideo($data);
         if ($info['code'] == Constant::SUCCESS) {
             return redirect('home');
         }

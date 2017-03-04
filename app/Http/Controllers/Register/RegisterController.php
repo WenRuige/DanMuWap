@@ -7,11 +7,11 @@
  */
 namespace App\Http\Controllers\Register;
 
-use App\Constant;
+use core\Constant;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Logic\Register\RegisterLogic;
-
+use core\User\UserService;
 
 class RegisterController extends Controller
 {
@@ -29,11 +29,11 @@ class RegisterController extends Controller
         ]);
         $email = $request->input('email');
         $password = password_hash($request->input('password'), PASSWORD_DEFAULT);
-        $info = RegisterLogic::getInstance()->registerAccount($email, $password);
-        if ($info['code'] == Constant::SUCCESS) {
+        $userInfo = UserService::getInstance()->register($email, $password);
+        if (!empty($userInfo['data'])) {
             return response()->json(array('code' => Constant::SUCCESS, 'message' => Constant::getMsg(Constant::SUCCESS)));
         } else {
-            return response()->json(array('code' => $info['code'], 'message' => Constant::getMsg($info['code'])));
+            return response()->json(array('code' => Constant::USER_ERROR, 'message' => Constant::getMsg(Constant::USER_ERROR)));
         }
     }
 }

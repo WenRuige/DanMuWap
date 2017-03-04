@@ -7,41 +7,25 @@
  */
 namespace App\Http\Controllers\Index;
 
-use App\Constant;
-use App\Events\ExampleEvent;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Logic\Index\IndexLogic;
-use Cache;
-use Event;
+use core\User\UserService;
+use core\Index\IndexService;
 
 class IndexController extends Controller
 {
-
-
-    //方法
-    public function check()
-    {
-        //加载Model类中的方法
-        Event::fire(new ExampleEvent());
-        //        $this->user->say();
-        Cache::put('key', 'value', 30);
-        $data = Cache::get('key');
-
-    }
-
     //首页展示
     public function index()
     {
-        //启用验证系统
-        $res = [];
-        $info = IndexLogic::getInstance()->show();
-        if ($info['code'] == Constant::SUCCESS) {
-            $res = $info['data'];
-        } else {
-            //如果返回不是成功的话,跳转到错误界面
-            echo 'error';
+        $videoInfo = IndexService::getInstance()->index();
+        //如果视频内容不为空的话
+        if (!empty($videoInfo['data'])) {
+            foreach ($videoInfo['data'] as $key => $value) {
+                $userInfo = UserService::getInstance()->getUserInformation($value['user_id'], ['photo', 'nickname']);
+                if (!empty($userInfo['data'])) {
+                    $videoInfo['data'][$key] = array_merge($videoInfo['data'][$key], $userInfo['data']);
+                }
+            }
         }
-        return view('Index.index', ['data' => $res]);
+        return view('Index.index', ['data' => $videoInfo['data']]);
     }
 }

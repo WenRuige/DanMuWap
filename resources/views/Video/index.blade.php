@@ -22,12 +22,12 @@
                 <!-- Add the bg color to the header using any of the bg-* classes -->
                 <div class="widget-user-header bg-blue">
                     <div class="widget-user-image">
-                        <img class="img-circle" src="{{url('picture/upload/'.$data['user']->photo)}}" alt="User Avatar"
+                        <img class="img-circle" src="{{url('picture/upload/'.$data['photo'])}}" alt="User Avatar"
                              style="height: 60px">
                     </div>
                     <!-- /.widget-user-image -->
-                    <h3 class="widget-user-username">{{$data['user']->nickname}}</h3>
-                    <h5 class="widget-user-desc">{{$data['user']->introduce}}
+                    <h3 class="widget-user-username">{{$data['nickname']}}</h3>
+                    <h5 class="widget-user-desc">{{$data['introduce']}}
                         <button v-on:click='follow' style="float: right" type="button" class="btn btn-default btn-xs">
                             @{{msg}}
                         </button>
@@ -66,7 +66,7 @@
             <!-- /.box-comment -->
             <div class="box-footer">
                 <form action="#" method="post">
-                    <img class="img-responsive img-circle img-sm" src="{{url("picture/upload/".$data['user']->photo)}}"
+                    <img class="img-responsive img-circle img-sm" src="{{url("picture/upload/".$data['photo'])}}"
                          alt="Alt Text">
                     <!-- .img-push is used to add margin to elements next to floating images -->
                     <div class="img-push">
@@ -89,11 +89,11 @@
 
         <script>
             $("#danmup").DanmuPlayer({
-                src: "{{url('video/upload/'.$data['video']->video)}}",
+                src: "{{url('video/upload/'.$data['video'])}}",
                 height: "30%", //区域的高度
                 width: "100%", //区域的宽度
-                urlToGetDanmu: "/getDanMu/{{$data['video']->id}}",
-                urlToPostDanmu: "/shootDanMu?id={{$data['video']->id}}"
+                urlToGetDanmu: "/getDanMu/{{$data['id']}}",
+                urlToPostDanmu: "/shootDanMu?id={{$data['id']}}"
             });
         </script>
 @endsection

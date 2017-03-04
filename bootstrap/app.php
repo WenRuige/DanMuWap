@@ -8,6 +8,7 @@ try {
     //加载错误信息
     dd($e->getMessage());
 }
+<<<<<<< HEAD
 
 
 
@@ -28,6 +29,8 @@ function serviceAutoload($className)
 
 spl_autoload_register("serviceAutoload");
 
+=======
+>>>>>>> 60829bc0f2c813b316e4a1329faff367a6a237c5
 /*
 |--------------------------------------------------------------------------
 | Create The Application
@@ -117,7 +120,6 @@ $app->routeMiddleware([
 $app->register(App\Providers\AppServiceProvider::class);
 //$app->register(App\Providers\AuthServiceProvider::class);
 //$app->register(App\Providers\EventServiceProvider::class);
-$app->register(App\Providers\ExampleServiceProvider::class);
 //注册redis服务提供者
 $app->register(Illuminate\Redis\RedisServiceProvider::class);
 //$app->register(Illuminate\filesystem\FilesystemServiceProvider::class);
