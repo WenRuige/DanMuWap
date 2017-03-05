@@ -8,11 +8,10 @@
 namespace App\Http\Controllers\Follow;
 
 use App\Http\Controllers\Controller;
+use core\Follow\FollowService;
+use core\Video\VideoService;
 use Illuminate\Http\Request;
-use App\Logic\Video\VideoLogic;
-use App\Logic\Follow\FollowLogic;
-use App\Constant;
-use Log;
+use core\Constant;
 
 class FollowController extends Controller
 {
@@ -22,12 +21,14 @@ class FollowController extends Controller
         $this->validate($request, [
             'param' => 'required'
         ]);
-        $userInfo = VideoLogic::getInstance()->getVideo($request->param);
-        $followInfo = FollowLogic::getInstance()->checkFollow($userInfo['data']->user_id);
-        if ($followInfo['code'] == Constant::SUCCESS) {
+        $videoInfo = VideoService::getInstance()->getVideoById($request->param);
+        if (!empty($videoInfo['data'])) {
+            $followInfo = FollowService::getInstance()->checkFollow($videoInfo['data']['user_id']);
+        }
+        if (isset($followInfo['data'])) {
             return response()->json(array('code' => $followInfo['code'], 'message' => Constant::getMsg($followInfo['code']), 'data' => $followInfo['data']));
         } else {
-            return response()->json(array('code' => $followInfo['code'], 'message' => Constant::getMsg($followInfo['code'])));
+            return response()->json(array('code' => Constant::UNKNOWN_ERROR, 'message' => Constant::getMsg($followInfo['code'])));
         }
     }
 
@@ -37,12 +38,15 @@ class FollowController extends Controller
         $this->validate($request, [
             'video_id' => 'required'
         ]);
-        $userInfo = VideoLogic::getInstance()->getVideo($request->video_id);
-        $followInfo = FollowLogic::getInstance()->follow($userInfo['data']->user_id);
-        if ($followInfo['code'] == Constant::SUCCESS) {
-            return response()->json(array('code' => $followInfo['code'], 'message' => Constant::getMsg($followInfo['code']), 'data' => $followInfo['data']));
+        $videoInfo = VideoService::getInstance()->getVideoById($request->video_id);
+
+        if (!empty($videoInfo['data'])) {
+            $followInfo = FollowService::getInstance()->follow($videoInfo['data']['user_id']);
+        }
+        if (!empty($followInfo['data'])) {
+            return response()->json(array('code' => Constant::SUCCESS, 'message' => Constant::getMsg(Constant::SUCCESS)));
         } else {
-            return response()->json(array('code' => $followInfo['code'], 'message' => Constant::getMsg($followInfo['code'])));
+            return response()->json(array('code' => Constant::UNKNOWN_ERROR, 'message' => Constant::getMsg(Constant::UNKNOWN_ERROR)));
         }
     }
 }

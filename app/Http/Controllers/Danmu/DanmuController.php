@@ -25,8 +25,7 @@ class DanmuController extends Controller
             echo 'error';
             die;
         }
-        DanMuService::getInstance()->getDanMu($id);
-        $info = DanmuLogic::getInstance()->getDanmu($id);
+        $info = DanMuService::getInstance()->getDanMu($id);
         if ($info['code'] == Constant::SUCCESS) {
             echo $info['data'];
         }
