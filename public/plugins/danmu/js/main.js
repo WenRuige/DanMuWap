@@ -11,6 +11,24 @@
 ;
 (function ($) {
 
+    var wsServer = 'ws://127.0.0.1:9502';
+    //调用websocket对象建立连接：
+    //参数：ws/wss(加密)：//ip:port （字符串）
+    var websocket = new WebSocket(wsServer);
+    //onopen监听连接打开
+    websocket.onopen = function (evt) {
+        //websocket.readyState 属性：
+        /*
+         CONNECTING    0    The connection is not yet open.
+         OPEN    1    The connection is open and ready to communicate.
+         CLOSING    2    The connection is in the process of closing.
+         CLOSED    3    The connection is closed or couldn't be opened.
+         */
+       // msg.innerHTML = websocket.readyState;
+    };
+    websocket.onmessage = function (evt) {
+        console.log('Retrieved data from server: ' + evt.data);
+    };
 
     var DanmuPlayer = function (element, options) {
         this.$element = $(element);
@@ -121,11 +139,18 @@
             var time = $(e.data.that.id + " .danmu-div").data("nowTime") + 3;
             //生成弹幕
             var textObj = '{ "text":"' + text + '","color":"' + color + '","size":"' + size + '","position":"' + position + '","time":' + time + '}';
+
+            websocket.send(textObj);
+
+            //是否将其修改为swoole socket
+
             //将弹幕post至后端
             if (e.data.that.options.urlToPostDanmu)
                 $.post(e.data.that.options.urlToPostDanmu, {
                     danmu: textObj
                 });
+
+
             textObj = '{ "text":"' + text + '","color":"' + color + '","size":"' + size + '","position":"' + position + '","time":' + time + ',"isnew":""}';
             var newObj = eval('(' + textObj + ')');
             $(e.data.that.id + " .danmu-div").danmu("addDanmu", newObj);
@@ -170,7 +195,7 @@
 
           //  }
         }, 50);
-        //按键事件
+        //监听按键事件
         $(document).ready(function () {
             jQuery("body").keydown({that: that}, function (event) {
                 if (event.which == 13) {
@@ -346,7 +371,7 @@
         zindex: 100,
         speed: 8000,
         sumTime: 65535,
-        defaultColor: "#ffffff",
+        defaultColor: "red",
         fontSizeSmall: 16,
         FontSizeBig: 24,
         opacity: ".8",

@@ -10,6 +10,9 @@
 | is ready to receive HTTP / Console requests from the environment.
 |
 */
+ini_set('session.save_handler', 'redis');
+ini_set('session.save_path', 'tcp://127.0.0.1:6379');
+session_start();
 //定义主依赖的位置
 define('SERVICE_PATH', __DIR__ . '/../../coreservice');
 //引入依赖文件
@@ -28,7 +31,7 @@ $app = require __DIR__ . '/../bootstrap/app.php';
 | and wonderful application we have prepared for them.
 |
 */
-session_start();
+
 //加载依赖库
 
 //spl_auto_load动态加载主库
@@ -46,5 +49,7 @@ function serviceAutoload($className)
     return false;
 }
 
+$redis = new redis();
+$redis->connect('127.0.0.1', 6379);
 spl_autoload_register("serviceAutoload");
 $app->run();
