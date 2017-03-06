@@ -10,6 +10,7 @@
 | is ready to receive HTTP / Console requests from the environment.
 |
 */
+//将默认session 改为redis
 ini_set('session.save_handler', 'redis');
 ini_set('session.save_path', 'tcp://127.0.0.1:6379');
 session_start();
@@ -51,5 +52,8 @@ function serviceAutoload($className)
 
 $redis = new redis();
 $redis->connect('127.0.0.1', 6379);
+//$data = $redis->lIndex('queue',0);
+//dd(json_decode($data));
+//$data = explode('',$data)
 spl_autoload_register("serviceAutoload");
 $app->run();

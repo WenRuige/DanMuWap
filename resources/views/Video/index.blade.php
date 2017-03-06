@@ -77,23 +77,23 @@
             </div>
         </div>
     </div>
+    <input type="hidden" id="uid" value="{{$data['uid']}}">
+        <br>
+        <br>
+        <br>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script src="{{url('/plugins/danmu/js/jquery.danmu.js')}}"></script>
+    <script src="{{url('/plugins/danmu/js/main.js')}}"></script>
+    <script src="{{url('/plugins/danmu/js/jquery.shCircleLoader.js')}}"></script>
+    <script src="{{url('js/comment/comment.js')}}"></script>
 
-        <br>
-        <br>
-        <br>
-        <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
-        <script src="{{url('/plugins/danmu/js/jquery.danmu.js')}}"></script>
-        <script src="{{url('/plugins/danmu/js/main.js')}}"></script>
-        <script src="{{url('/plugins/danmu/js/jquery.shCircleLoader.js')}}"></script>
-        <script src="{{url('js/comment/comment.js')}}"></script>
-
-        <script>
-            $("#danmup").DanmuPlayer({
-                src: "{{url('video/upload/'.$data['video'])}}",
-                height: "30%", //区域的高度
-                width: "100%", //区域的宽度
-                urlToGetDanmu: "/getDanMu/{{$data['id']}}",
-                urlToPostDanmu: "/shootDanMu?id={{$data['id']}}"
-            });
-        </script>
+    <script>
+        $("#danmup").DanmuPlayer({
+            src: "{{url('video/upload/'.$data['video'])}}",
+            height: "30%", //区域的高度
+            width: "100%", //区域的宽度
+            urlToGetDanmu: "/getDanMu/{{$data['id']}}",
+            //urlToPostDanmu: "/shootDanMu?id={{$data['id']}}"
+        });
+    </script>
 @endsection

@@ -24,7 +24,6 @@
          CLOSING    2    The connection is in the process of closing.
          CLOSED    3    The connection is closed or couldn't be opened.
          */
-       // msg.innerHTML = websocket.readyState;
     };
     websocket.onmessage = function (evt) {
         console.log('Retrieved data from server: ' + evt.data);
@@ -108,14 +107,12 @@
          100% {background:black}"
         });
 
-        
-
 
         //从后端获取弹幕
         this.getDanmu = function () {
             $.get(that.options.urlToGetDanmu, function (data, status) {
                 danmuFromSql = eval(data);
-				$(that.id + ' .danmu-div').danmu("addDanmu", danmuFromSql);
+                $(that.id + ' .danmu-div').danmu("addDanmu", danmuFromSql);
             });
         };
 
@@ -128,27 +125,29 @@
             if (text.length == 0) {
                 return;
             }
-            if (text.length > 255){
+            if (text.length > 255) {
                 alert("弹幕过长！");
                 return;
             }
             text = text.replace(/&/g, "&gt;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\"/g, "&quot;").replace(/\n/g, "<br>");
             var color = e.data.that.danmuColor;
-			var position = 0;
-			var size = 10;
+            var position = 0;
+            var size = 10;
             var time = $(e.data.that.id + " .danmu-div").data("nowTime") + 3;
             //生成弹幕
             var textObj = '{ "text":"' + text + '","color":"' + color + '","size":"' + size + '","position":"' + position + '","time":' + time + '}';
-
-            websocket.send(textObj);
+            var dataObj = new Array();
+            dataObj[0] = textObj;
+            dataObj[1] = $("#uid").val()
+            websocket.send(dataObj);
 
             //是否将其修改为swoole socket
 
             //将弹幕post至后端
-            if (e.data.that.options.urlToPostDanmu)
-                $.post(e.data.that.options.urlToPostDanmu, {
-                    danmu: textObj
-                });
+            // if (e.data.that.options.urlToPostDanmu)
+            //     $.post(e.data.that.options.urlToPostDanmu, {
+            //         danmu: textObj
+            //     });
 
 
             textObj = '{ "text":"' + text + '","color":"' + color + '","size":"' + size + '","position":"' + position + '","time":' + time + ',"isnew":""}';
@@ -176,24 +175,24 @@
         //主计时器
         var mainTimer = setInterval(function () {
             //缓冲条
-            var bufTime=$(that.id + " .danmu-video").get(0).buffered.end($(that.id + " .danmu-video").get(0).buffered.length-1);
+            var bufTime = $(that.id + " .danmu-video").get(0).buffered.end($(that.id + " .danmu-video").get(0).buffered.length - 1);
 
-            var buffPrecent = (bufTime/that.duration) * 100;
+            var buffPrecent = (bufTime / that.duration) * 100;
             $(that.id + ".danmu-player .ctrl-progress .buffered ").css("width", buffPrecent + "%");
-           // 时间轴修正
-           // if (Math.abs($(that.id + " .danmu-div").data("nowTime") - parseInt(that.video.currentTime)*10) > 1) {
-           //     $(that.id + " .danmu-div").data("nowTime", parseInt(that.video.currentTime)*10);
-           //     console.log("revise time：")
-           // }
+            // 时间轴修正
+            // if (Math.abs($(that.id + " .danmu-div").data("nowTime") - parseInt(that.video.currentTime)*10) > 1) {
+            //     $(that.id + " .danmu-div").data("nowTime", parseInt(that.video.currentTime)*10);
+            //     console.log("revise time：")
+            // }
         }, 1000);
 
 
         var secTimer = setInterval(function () {
-           // if (Math.abs($(that.id + " .danmu-div").data("nowTime") - parseInt(that.video.currentTime*10)) > 1) {
-              //  console.log("revise time"+$(that.id + " .danmu-div").data("nowTime")+ ","+that.video.currentTime*10);
-                $(that.id + " .danmu-div").data("nowTime", parseInt(that.video.currentTime*10));
+            // if (Math.abs($(that.id + " .danmu-div").data("nowTime") - parseInt(that.video.currentTime*10)) > 1) {
+            //  console.log("revise time"+$(that.id + " .danmu-div").data("nowTime")+ ","+that.video.currentTime*10);
+            $(that.id + " .danmu-div").data("nowTime", parseInt(that.video.currentTime * 10));
 
-          //  }
+            //  }
         }, 50);
         //监听按键事件
         $(document).ready(function () {
@@ -223,10 +222,10 @@
                 $(e.data.that.id + " .danmu-div").data("nowTime", 0);
                 $(e.data.that.id + " .danmu-div").data("danmuPause");
             } else {
-                $(e.data.that.id + " .danmu-div").data("nowTime", parseInt($(e.data.that.id + " .danmu-video").get(0).currentTime)*10);
+                $(e.data.that.id + " .danmu-div").data("nowTime", parseInt($(e.data.that.id + " .danmu-video").get(0).currentTime) * 10);
                 $(e.data.that.id + " .danmu-div").data("danmuPause");
             }
-            $(e.data.that.id + " .danmu-player-load").css("display","block");
+            $(e.data.that.id + " .danmu-player-load").css("display", "block");
 
         });
 
@@ -237,10 +236,10 @@
                 $(e.data.that.id + " .danmu-div").data("nowTime", 0);
                 $(e.data.that.id + " .danmu-div").data("danmuResume");
             } else {
-                $(e.data.that.id + " .danmu-div").data("nowTime", parseInt($(e.data.that.id + " .danmu-video").get(0).currentTime)*10);
+                $(e.data.that.id + " .danmu-div").data("nowTime", parseInt($(e.data.that.id + " .danmu-video").get(0).currentTime) * 10);
                 $(e.data.that.id + " .danmu-div").data("danmuResume");
             }
-            $(e.data.that.id + " .danmu-player-load").css("display","none");
+            $(e.data.that.id + " .danmu-player-load").css("display", "none");
 
         });
 
@@ -249,19 +248,19 @@
         $(this.id + " .danmu-video").on('seeked ', {that: that}, function (e) {
             $(e.data.that.id + " .danmu-div").danmu("danmuHideAll");
         });
-		
+
         //全屏事件
         $(this.id + " .full-screen").on("click", {video: this.video, that: that}, function (e) {
             if (!e.data.that.danmuPlayerFullScreen) {
                 //$css({"position":"fixed","zindex":"999","top":"0","left":"0","height":"100vh","width":"100vw"});
                 $(e.data.that.id).addClass("danmu-player-full-screen");
                 e.data.that.danmuPlayerFullScreen = true;
-				$(e.data.that.id + " .full-screen span").html('退出');
+                $(e.data.that.id + " .full-screen span").html('退出');
             }
             else {
                 $(e.data.that.id).removeClass("danmu-player-full-screen");
                 e.data.that.danmuPlayerFullScreen = false;
-				$(e.data.that.id + " .full-screen span").html('全屏');
+                $(e.data.that.id + " .full-screen span").html('全屏');
             }
 
         });
@@ -271,12 +270,12 @@
             if (e.data.that.danmuShowed) {
                 $(e.data.that.id + " .danmu-div").css("visibility", "hidden");
                 e.data.that.danmuShowed = false;
-				$(e.data.that.id + " .show-danmu").html('开启');
+                $(e.data.that.id + " .show-danmu").html('开启');
             }
             else {
                 e.data.that.danmuShowed = true;
                 $(e.data.that.id + " .danmu-div").css("visibility", "visible");
-				$(e.data.that.id + " .show-danmu").html('关闭');
+                $(e.data.that.id + " .show-danmu").html('关闭');
             }
 
         });
@@ -388,7 +387,7 @@
             var data = $this.data('DanmuPlayer');
             var action = typeof option == 'string' ? option : NaN;
             if (!data) $this.data('danmu', (data = new DanmuPlayer(this, options)));
-            if (action)    data[action](arg);
+            if (action) data[action](arg);
         })
     }
 

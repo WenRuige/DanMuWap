@@ -21,6 +21,7 @@ class VideoController extends Controller
             $userInfo = UserService::getInstance()->getUserInformation($videoInfo['data']['user_id'], ['introduce', 'nickname', 'photo']);
             if (!empty($userInfo)) {
                 $videoInfo['data'] = array_merge($videoInfo['data'], $userInfo['data']);
+                $videoInfo['data']['uid'] = !empty($_SESSION['userId']) ? $_SESSION['userId'] : '';
             }
         }
         return view('Video.index', ['data' => $videoInfo['data']]);
