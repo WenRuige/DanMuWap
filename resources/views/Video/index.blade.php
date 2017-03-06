@@ -78,6 +78,7 @@
         </div>
     </div>
     <input type="hidden" id="uid" value="{{$data['uid']}}">
+    <input type="hidden" id="video_id" value="{{$data['id']}}">
         <br>
         <br>
         <br>

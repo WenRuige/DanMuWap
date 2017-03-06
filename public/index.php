@@ -17,7 +17,7 @@ session_start();
 //定义主依赖的位置
 define('SERVICE_PATH', __DIR__ . '/../../coreservice');
 //引入依赖文件
-require SERVICE_PATH.'/vendor/autoload.php';
+require SERVICE_PATH . '/vendor/autoload.php';
 //加载bootstrap的 app.php文件
 $app = require __DIR__ . '/../bootstrap/app.php';
 
@@ -52,8 +52,15 @@ function serviceAutoload($className)
 
 $redis = new redis();
 $redis->connect('127.0.0.1', 6379);
-//$data = $redis->lIndex('queue',0);
-//dd(json_decode($data));
-//$data = explode('',$data)
+//$data = $redis->lIndex('queue', 0);
+//$array = json_decode($data, true);
+//$ss = explode(',', $array);
+//
+//$res = '';
+//for ($i = 0; $i <= 4; $i++){
+//    $res.=$ss[$i].',';
+//}
+//dd($res);
+//$data = explode('',$data,-1);
 spl_autoload_register("serviceAutoload");
 $app->run();

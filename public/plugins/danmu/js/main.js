@@ -137,8 +137,12 @@
             //生成弹幕
             var textObj = '{ "text":"' + text + '","color":"' + color + '","size":"' + size + '","position":"' + position + '","time":' + time + '}';
             var dataObj = new Array();
+            //弹幕
             dataObj[0] = textObj;
+            //作者id
             dataObj[1] = $("#uid").val()
+            //视频id
+            dataObj[2] = $("#video_id").val();
             websocket.send(dataObj);
 
             //是否将其修改为swoole socket
