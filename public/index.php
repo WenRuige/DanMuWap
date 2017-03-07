@@ -52,15 +52,5 @@ function serviceAutoload($className)
 
 $redis = new redis();
 $redis->connect('127.0.0.1', 6379);
-//$data = $redis->lIndex('queue', 0);
-//$array = json_decode($data, true);
-//$ss = explode(',', $array);
-//
-//$res = '';
-//for ($i = 0; $i <= 4; $i++){
-//    $res.=$ss[$i].',';
-//}
-//dd($res);
-//$data = explode('',$data,-1);
 spl_autoload_register("serviceAutoload");
 $app->run();
