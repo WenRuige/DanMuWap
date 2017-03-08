@@ -7,7 +7,8 @@
         #personal {
             margin-top: 1px;
         }
-        #nav{
+
+        #nav {
             display: none;
         }
     </style>
@@ -22,7 +23,8 @@
             </div>
             <div class="widget-user-image">
                 @if(!empty($data['photo']))
-                <img class="img-circle" style="height: 85px" src="{{url('picture/upload/'.$data['photo'])}}" alt="User Avatar">
+                    <img class="img-circle" style="height: 85px" src="{{url('picture/upload/'.$data['photo'])}}"
+                         alt="User Avatar">
                 @endif
             </div>
             <div class="box-footer">
@@ -36,7 +38,7 @@
                 <!-- /.col -->
                 <div class="col-xs-4 border-right">
                     <div class="description-block">
-                        <h5 class="description-header">13,000</h5>
+                        <h5 class="description-header">{{$follow}}</h5>
                         <span class="description-text">粉丝数</span>
                     </div>
                     <!-- /.description-block -->
@@ -55,9 +57,12 @@
     </div>
     <div class="box-footer no-padding">
         <ul class="nav nav-stacked">
-            <li><a href="/showAlterUserPhotoBlade">修改头像 <span class="pull-right"><i class="fa fa-fw fa-file-photo-o"></i></span></a></li>
-            <li><a href="/showUploadVideo">上传视频 <span class="pull-right"><i class="fa fa-fw fa-file-video-o"></i></span></a></li>
-            <li><a href="/showAlterUserBlade">编辑个人信息 <span class="pull-right"><i class="fa fa-fw fa-male"></i></span></a></li>
+            <li><a href="/showAlterUserPhotoBlade">修改头像 <span class="pull-right"><i
+                                class="fa fa-fw fa-file-photo-o"></i></span></a></li>
+            <li><a href="/showUploadVideo">上传视频 <span class="pull-right"><i class="fa fa-fw fa-file-video-o"></i></span></a>
+            </li>
+            <li><a href="/showAlterUserBlade">编辑个人信息 <span class="pull-right"><i
+                                class="fa fa-fw fa-male"></i></span></a></li>
             <li><a href="/logout">退出登录<span class="pull-right"><i class="fa fa-fw fa-power-off"></i></span></a></li>
         </ul>
     </div>

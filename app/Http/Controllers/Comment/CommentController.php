@@ -24,7 +24,6 @@ class CommentController extends Controller
             'param' => 'required'
         ]);
         $commentInfo = CommentService::getInstance()->getCommentList($request->param);
-
         if (!empty($commentInfo['data'])) {
             foreach ($commentInfo['data'] as $key => $value) {
                 $userInfo = UserService::getInstance()->getUserInformation($value['user_id'], ['photo', 'nickname']);
@@ -33,11 +32,7 @@ class CommentController extends Controller
                 }
             }
         }
-        if (!empty($commentInfo['data'])) {
-            return response()->json(array('code' => Constant::SUCCESS, 'data' => $commentInfo['data'], 'message' => Constant::getMsg(Constant::SUCCESS)));
-        } else {
-            return response()->json(array('code' => Constant::UNKNOWN_ERROR, 'message' => Constant::getMsg(Constant::UNKNOWN_ERROR)));
-        }
+        return response()->json(array('code' => Constant::SUCCESS, 'data' => $commentInfo['data'], 'message' => Constant::getMsg(Constant::SUCCESS)));
     }
 
     //添加一条评论
@@ -47,7 +42,7 @@ class CommentController extends Controller
             'comment' => 'required',
             'video_id' => 'required'
         ]);
-        $info = CommentService::getInstance()->insertComment($request->comment,$request->video_id);
+        $info = CommentService::getInstance()->insertComment($request->comment, $request->video_id);
         if ($info['code'] == Constant::SUCCESS) {
             return response()->json(array('code' => Constant::SUCCESS, 'data' => $info['data'], 'message' => Constant::getMsg(Constant::SUCCESS)));
         } else {
