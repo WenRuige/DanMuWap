@@ -83,6 +83,15 @@ $app->get('videos/{id}', [
 $app->get('home', [
     'as' => 'home', 'uses' => 'Home\HomeController@index'
 ]);
+//动弹一下
+$app->get('dynamic', [
+    'as' => 'dynamic', 'uses' => 'Dynamic\DynamicController@index'
+]);
+
+//获取弹幕
+$app->get('getDynamic',[
+    'as' => 'getDynamic', 'uses' => 'Dynamic\DynamicController@getDynamic'
+]);
 
 //$app->get('showAlterUserBlade', [
 //    'as' => 'showAlterUserBlade', 'uses' => 'Users\UsersController@showAlterUserBlade'
