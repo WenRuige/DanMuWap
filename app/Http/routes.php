@@ -62,7 +62,6 @@ $app->group(['middleware' => 'auth'], function () use ($app) {
 
 
 });
-
 //注册模板路由
 $app->get('register', 'Register\RegisterController@index');
 //注册路由
@@ -89,48 +88,20 @@ $app->get('dynamic', [
 ]);
 
 //获取弹幕
-$app->get('getDynamic',[
+$app->get('getDynamic', [
     'as' => 'getDynamic', 'uses' => 'Dynamic\DynamicController@getDynamic'
 ]);
-
-//$app->get('showAlterUserBlade', [
-//    'as' => 'showAlterUserBlade', 'uses' => 'Users\UsersController@showAlterUserBlade'
-//]);
-////修改个人信息ajax路由
-//$app->get('ajaxAlterUserInformation', [
-//    'as' => 'ajaxAlterUserInformation', 'uses' => 'Users\UsersController@ajaxAlterUserInformation'
-//]);
+//发送弹幕
+$app->post('dynamicUpload', [
+    'as' => 'dynamicUpload', 'uses' => 'Dynamic\DynamicController@dynamicUpload'
+]);
 //获取用户个人信息[接口]
 $app->get('ajaxGetUserInformation', [
     'as' => 'ajaxGetUserInformation', 'uses' => 'Users\UsersController@ajaxGetUserInformation'
 ]);
-////展示用户头像的模板界面
-//$app->get('showAlterUserPhotoBlade', [
-//    'as' => 'showAlterUserPhotoBlade', 'uses' => 'Users\UsersController@showAlterUserPhotoBlade'
-//]);
-////上传头像路由
-//$app->post('uploadPhoto', [
-//    'as' => 'uploadPhoto', 'uses' => 'Users\UsersController@uploadPhoto'
-//]);
-////上传视频模板界面
-//$app->get('showUploadVideo', [
-//    'as' => 'showUploadVideo', 'uses' => 'Video\VideoController@showUploadVideo'
-//]);
-////上传视频
-//$app->post('uploadVideo', [
-//    'as' => 'uploadVideo', 'uses' => 'Video\VideoController@uploadVideo'
-//]);
 //获取弹幕
 $app->get('getDanMu/{id}', 'Danmu\DanmuController@getDanMu');
-//发送弹幕
-//$app->post('shootDanMu', [
-//    'as' => 'shootDanMu', 'uses' => 'Danmu\DanmuController@shootDanMu'
-//]);
 //拉取评论列表
 $app->get('ajaxGetCommentList', [
     'as' => 'ajaxGetCommentList', 'uses' => 'Comment\CommentController@ajaxGetCommentList'
 ]);
-////添加评论信息
-//$app->get('ajaxAddCommentList', [
-//    'as' => 'ajaxAddCommentList', 'uses' => 'Comment\CommentController@ajaxAddCommentList'
-//]);

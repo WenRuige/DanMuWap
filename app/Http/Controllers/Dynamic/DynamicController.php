@@ -8,6 +8,7 @@
 namespace App\Http\Controllers\Dynamic;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 //动弹地址
 class DynamicController extends Controller
@@ -19,9 +20,16 @@ class DynamicController extends Controller
 
 
     //发送一条弹幕
-    public function sendDynamic()
+    public function dynamicUpload(Request $request)
     {
+        $this->validate($request, [
+            'info' => 'required'
+        ]);
 
+
+//        $filename = md5(date('Y-m-d H:i:s'));
+//        $request->file('picture')->move('', $filename . '.jpg');
+//        dd($request->all());
     }
 
     public function getDynamic()

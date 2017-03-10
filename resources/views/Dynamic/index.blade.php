@@ -1,6 +1,6 @@
 @extends('layouts.index')
 @section('title')
-   选择您想说的话,动弹一下吧
+    选择您想说的话,动弹一下吧
 @endsection
 @section('content')
     <link rel="stylesheet" href="{{url('plugins/filer/css/jquery.filer.css')}}">
@@ -35,19 +35,23 @@
             background-color: #ffffff;
             box-shadow: 0px 1px 3px rgba(34, 25, 25, 0.2);
         }
+        a:link{color:#000000}
     </style>
     <!--重写nav -->
     <div id="back">
         <span class="glyphicon glyphicon-chevron-left"></span><a href='javascript:history.go(-1)'>后退</a>
     </div>
-
+    <code>看看大家都在说什么</code>
+    <div class='marquee'>
+        <code>xxx用户数</code> 太帅了
+    </div>
     <div id="app">
         <code>动弹一下</code>
-        <form action="/dynamic" method="post" enctype="multipart/form-data">
+        <form action="/dynamicUpload" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="您想说的话" class="col-sm-5 control-label">您想说的话*</label>
                 <div class="col-sm-8">
-                    <input name="name" type="text" class="form-control" placeholder="girigiri" required="required">
+                    <input name="info" type="text" class="form-control" placeholder="girigiri" required="required">
                 </div>
             </div>
 
@@ -62,22 +66,14 @@
     </div>
 
     <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
-    <script src="//cdn.jsdelivr.net/jquery.marquee/1.4.0/jquery.marquee.min.js" type="text/javascript"></script>
-    <code>看看大家都在说什么</code>
-    <div class='marquee'>
-        <code>xxx用户数</code> 太帅了
-    </div>
+    <script src="{{url('plugins/marquee/marquee.js')}}" type="text/javascript"></script>
+
     <script>
         $('.marquee').marquee({
-            //speed in milliseconds of the marquee
-            duration: 5000,
-            //gap in pixels between the tickers
+            duration: 3000,
             gap: 50,
-            //time in milliseconds before the marquee will start animating
             delayBeforeStart: 0,
-            //'left' or 'right'
             direction: 'up',
-            //true or false - should the marquee be duplicated to show an effect of continues flow
             duplicated: true
         });
     </script>

@@ -129,17 +129,6 @@
 
                 });
             }
-            //            var item = {
-            //                img: '../123.jpg', //图片
-            //                info: '弹幕文字信息', //文字
-            //                href: 'http://www.baidu.com', //链接
-            //                close: false, //显示关闭按钮
-            //                speed: 10, //延迟,单位秒,默认6
-            //                bottom: 70, //距离底部高度,单位px,默认随机
-            //                color: 'gray', //颜色,默认白色
-            //                old_ie_color: '#000000', //ie低版兼容色,不能与网页背景相同,默认黑色
-            //            }
-            //$('body').barrager(item);
         </script>
         <!-- 轮播图结束-->
 @endsection
