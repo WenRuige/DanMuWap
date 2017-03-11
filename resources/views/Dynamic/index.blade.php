@@ -47,7 +47,7 @@
     </div>
     <div id="app">
         <code>动弹一下</code>
-        <form action="/dynamicUpload" method="post" enctype="multipart/form-data">
+        <form action="/sendDynamic" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="您想说的话" class="col-sm-5 control-label">您想说的话*</label>
                 <div class="col-sm-8">
@@ -55,12 +55,12 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                <label for="上传您的小图" class="col-sm-5 control-label">上传您的小图</label>
-                <div class="col-sm-8">
-                    <input type="file" name="file" id="filer_input" multiple="multiple">
-                </div>
-            </div>
+            {{--<div class="form-group">--}}
+                {{--<label for="上传您的小图" class="col-sm-5 control-label">上传您的小图</label>--}}
+                {{--<div class="col-sm-8">--}}
+                    {{--<input type="file" name="file" id="filer_input" multiple="multiple">--}}
+                {{--</div>--}}
+            {{--</div>--}}
             <input type="submit" class="btn btn-block btn-info btn-sm" value="提交">
         </form>
     </div>

@@ -8,6 +8,7 @@
 namespace App\Http\Controllers\Dynamic;
 
 use App\Http\Controllers\Controller;
+use core\Dynamic\DynamicService;
 use Illuminate\Http\Request;
 
 //动弹地址
@@ -20,34 +21,37 @@ class DynamicController extends Controller
 
 
     //发送一条弹幕
-    public function dynamicUpload(Request $request)
+    public function sendDynamic(Request $request)
     {
         $this->validate($request, [
             'info' => 'required'
         ]);
+        $info = DynamicService::getInstance()->sendDynamic($request->info);
+        if (!empty($info['data'])) {
 
-
-//        $filename = md5(date('Y-m-d H:i:s'));
-//        $request->file('picture')->move('', $filename . '.jpg');
-//        dd($request->all());
+        }
     }
 
+    //获取一条弹幕
     public function getDynamic()
     {
-        $barrages =
-            array(
-                array(
-                    'info' => '第一条弹幕',
-                    'img' => '../123.jpg',
-                    'href' => '',
 
-                ),
-                array(
-                    'info' => '第二条弹幕',
-                    'href' => '',
-                    'color' => '#ff6600'
-
-                ),);
-        echo json_encode($barrages[array_rand($barrages)]);
+        $dynamicInfo = DynamicService::getInstance()->getDynamic();
+        if (!empty($dynamicInfo['data'])) {
+            echo json_encode($dynamicInfo['data'][array_rand($dynamicInfo['data'])]);
+        }
+        //dd($data);
+//        $barrages =
+//            array(
+//                array(
+//                    'info' => '第一条弹幕',
+//                    //'img' => '../123.jpg',
+//                ),
+//                array(
+//                    'info' => '第二条弹幕',
+//                ),);
+//
+//        var_dump($barrages);
+//        echo json_encode($barrages[array_rand($barrages)]);
     }
 }

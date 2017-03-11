@@ -92,8 +92,8 @@ $app->get('getDynamic', [
     'as' => 'getDynamic', 'uses' => 'Dynamic\DynamicController@getDynamic'
 ]);
 //发送弹幕
-$app->post('dynamicUpload', [
-    'as' => 'dynamicUpload', 'uses' => 'Dynamic\DynamicController@dynamicUpload'
+$app->post('sendDynamic', [
+    'as' => 'sendDynamic', 'uses' => 'Dynamic\DynamicController@sendDynamic'
 ]);
 //获取用户个人信息[接口]
 $app->get('ajaxGetUserInformation', [
