@@ -36,13 +36,13 @@
         <div class="form-group">
             <label for="视频名称" class="col-sm-5 control-label">视频名称</label>
             <div class="col-sm-8">
-                <input name="name" type="text" class="form-control" placeholder="昵称" required="required">
+                <input name="name" id="name" type="text" class="form-control" placeholder="视频名称" required="required">
             </div>
         </div>
         <div class="form-group">
             <label for="视频名称" class="col-sm-5 control-label">填写您的视频简介</label>
             <div class="col-sm-8">
-                    <textarea type="text" name="content" class="form-control" placeholder="昵称"
+                    <textarea type="text" id="content" class="form-control" placeholder="填写您的视频简介"
                               required="required"></textarea>
             </div>
         </div>
@@ -52,21 +52,21 @@
                 <input type="file" name="picture">
             </div>
         </div>
-        <div class="form-group">
-            <label for="上传您的视频封面" class="col-sm-5 control-label">SystemHelp</label>
-            <div class="col-sm-8">
-                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">系统生成gif
-                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">系统生成jpg
-
-            </div>
-        </div>
+        {{--<div class="form-group">--}}
+        {{--<label for="上传您的视频封面" class="col-sm-5 control-label">SystemHelp</label>--}}
+        {{--<div class="col-sm-8">--}}
+        {{--<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">系统生成gif--}}
+        {{--<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">系统生成jpg--}}
+        <input type="hidden" id="hash">
+        {{--</div>--}}
+        {{--</div>--}}
         <div class="form-group">
             <label for="上传您的视频" class="col-sm-5 control-label">上传您的视频</label>
             <div class="col-sm-8">
                 <input type="file" name="file" id="filer_input" multiple="multiple">
             </div>
         </div>
-        <input class="btn btn-block btn-info btn-sm" value="提交">
+        <input type="button" class="btn btn-block btn-info btn-sm" value="提交" onclick="video.sub()">
 
     </div>
     <br>  <br>  <br>
@@ -76,7 +76,6 @@
     <script src="{{url('plugins/filer/js/jquery.filer.min.js')}}"></script>
     <script>
         $(document).ready(function () {
-            //Example 2
             $("#filer_input").filer({
                 changeInput: '<div class="jFiler-input-dragDrop">' +
                 '<div class="jFiler-input-inner">' +
@@ -144,17 +143,20 @@
                     itemAppendToEnd: false,
                 },
                 uploadFile: {
-                    url: "./php/ajax_upload_file.php",
+                    url: "uploadVideo",
                     data: null,
                     type: 'POST',
                     enctype: 'multipart/form-data',
                     synchron: true,
                     beforeSend: function () {
+                        alert('开始处理请稍等哦');
                     },
                     success: function (data, itemEl, listEl, boxEl, newInputEl, inputEl, id) {
                         var parent = itemEl.find(".jFiler-jProgressBar").parent(),
-                            new_file_name = JSON.parse(data),
-                            filerKit = inputEl.prop("jFiler");
+                            new_file_name = JSON.parse(data);
+                        $("#hash").val(new_file_name);
+                        console.log(new_file_name);
+                        filerKit = inputEl.prop("jFiler");
 
                         filerKit.files_list[id].name = new_file_name;
 
@@ -176,7 +178,7 @@
                     var filerKit = inputEl.prop("jFiler"),
                         file_name = filerKit.files_list[id].name;
 
-                    $.post('./php/ajax_remove_file.php', {file: file_name});
+                    //$.post('./php/ajax_remove_file.php', {file: file_name});
                 },
                 onEmpty: null,
                 options: null,
@@ -205,5 +207,6 @@
         })
 
     </script>
+    <script src="{{url('js/video/video.js')}}"></script>
 
 @endsection

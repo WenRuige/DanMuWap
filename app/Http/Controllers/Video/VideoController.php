@@ -1,10 +1,7 @@
 <?php
 namespace App\Http\Controllers\Video;
 
-use App\Constant;
 use App\Http\Controllers\Controller;
-use App\Logic\Video\VideoLogic;
-use App\Model\Video;
 use core\User\UserService;
 use Illuminate\Http\Request;
 use core\Video\VideoService;
@@ -36,31 +33,34 @@ class VideoController extends Controller
     //TODO:上传完删除该文件,二次上传的时候删除该信息
     public function uploadVideo(Request $request)
     {
-        dd($request->all());
-//        $this->validate($request, [
-//                'name' => 'required',
-//                'content' => 'required'
-//            ]
-//        );
-        $file = $request->file('file');
-        //如果上传文件为空的话,直接返回失败
-        if (empty($file)) {
-            return redirect('home');
-        }
+        //获取文件名称md5加密
         $filename = md5(date('Y-m-d H:i:s'));
-        //支持多文件上传
+        //TODO:路径改为可配置
+        $file = 'video/upload/' . $filename . '.mp4';
         $request->file('file')[0]->move('video/upload', $filename . '.mp4');
-        $request->file('picture')->move('video/cover', $filename . '.jpg');
-        $data['picture'] = $filename . '.jpg';
-        $data['name'] = $request->name;
-        $data['video'] = $filename . '.mp4';
-        $data['content'] = $request->content;
-        $data['create_time'] = date("Y-m-d H:i:s");
-        $data['user_id'] = $_SESSION['userId'];
-        $info = VideoService::getInstance()->uploadVideo($data);
-        if ($info['code'] == Constant::SUCCESS) {
-            return redirect('home');
+        $info = VideoService::getInstance()->uploadVideo($file, 'video/gif', $filename);
+        //如果不为空的话返回文件名称
+        if (!empty($info['data'])) {
+            echo json_encode(array('filename' => $info['data']));
         }
+
+        //如果上传文件为空的话,直接返回失败
+//        if (empty($file)) {
+//            return redirect('home');
+//        }
+//        //支持多文件上传
+//        $request->file('file')[0]->move('video/upload', $filename . '.mp4');
+//        $request->file('picture')->move('video/cover', $filename . '.jpg');
+//        $data['picture'] = $filename . '.jpg';
+//        $data['name'] = $request->name;
+//        $data['video'] = $filename . '.mp4';
+//        $data['content'] = $request->content;
+//        $data['create_time'] = date("Y-m-d H:i:s");
+//        $data['user_id'] = $_SESSION['userId'];
+//        $info = VideoService::getInstance()->uploadVideo($data);
+//        if ($info['code'] == Constant::SUCCESS) {
+//            return redirect('home');
+//        }
     }
 
 
