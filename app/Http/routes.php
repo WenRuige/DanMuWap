@@ -45,6 +45,16 @@ $app->group(['middleware' => 'auth'], function () use ($app) {
     $app->post('uploadVideo', [
         'as' => 'uploadVideo', 'uses' => 'Video\VideoController@uploadVideo'
     ]);
+    //上传图片封面
+
+    $app->post('uploadPicture', [
+        'as' => 'uploadPicture', 'uses' => 'Video\VideoController@uploadPicture'
+    ]);
+    //上传视频详细信息
+    $app->post('uploadVideoInformation', [
+        'as' => 'uploadVideoInformation', 'uses' => 'Video\VideoController@uploadVideoInformation'
+    ]);
+
     //展示用户头像的模板界面
     $app->get('showAlterUserPhotoBlade', [
         'as' => 'showAlterUserPhotoBlade', 'uses' => 'Users\UsersController@showAlterUserPhotoBlade'

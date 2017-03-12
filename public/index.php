@@ -10,6 +10,7 @@
 | is ready to receive HTTP / Console requests from the environment.
 |
 */
+//echo phpinfo();
 //将默认session 改为redis
 ini_set('session.save_handler', 'redis');
 ini_set('session.save_path', 'tcp://127.0.0.1:6379');

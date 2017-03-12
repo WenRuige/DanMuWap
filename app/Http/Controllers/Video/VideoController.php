@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use core\User\UserService;
 use Illuminate\Http\Request;
 use core\Video\VideoService;
+use core\Constant;
 
 class VideoController extends Controller
 {
@@ -29,6 +30,25 @@ class VideoController extends Controller
     {
         return view('Video.uploadVideo');
     }
+
+    //上传视频封面
+    public function uploadPicture(Request $request)
+    {
+        $img = $request->img;
+        list($type, $data) = explode(',', $img);
+        // 判断类型
+        if (strstr($type, 'image/jpeg') != '') {
+            $ext = '.jpg';
+        } elseif (strstr($type, 'image/gif') != '') {
+            $ext = '.gif';
+        } elseif (strstr($type, 'image/png') != '') {
+            $ext = '.png';
+        }
+        $path = 'video/cover/' . md5(date('Y-m-d H:i:s')) . $ext;
+        file_put_contents($path, base64_decode($data), true);
+        echo json_encode(array('img' => md5(date('Y-m-d H:i:s')) . $ext));
+    }
+
     //上传用户的视频
     //TODO:上传完删除该文件,二次上传的时候删除该信息
     public function uploadVideo(Request $request)
@@ -61,6 +81,22 @@ class VideoController extends Controller
 //        if ($info['code'] == Constant::SUCCESS) {
 //            return redirect('home');
 //        }
+    }
+
+    //上传视频相关信息
+    public function uploadVideoInformation(Request $request)
+    {
+        $data['picture'] = $request->picture;
+        $data['name'] = $request->name;
+        $data['video'] = $request->video . '.mp4';
+        $data['gif'] = $request->video . '.gif';
+        $data['content'] = $request->content;
+        $data['create_time'] = date("Y-m-d H:i:s");
+        $data['user_id'] = $_SESSION['userId'];
+        $info = VideoService::getInstance()->uploadVideoInformation($data);
+        if ($info['code'] == Constant::SUCCESS) {
+            return redirect('home');
+        }
     }
 
 

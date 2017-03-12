@@ -49,7 +49,7 @@
         <div class="form-group">
             <label for="上传您的视频封面" class="col-sm-5 control-label">上传您的视频封面</label>
             <div class="col-sm-8">
-                <input type="file" name="picture">
+                <input type="file" name="picture" id="picture" onchange="video.uploadPicture()">
             </div>
         </div>
         {{--<div class="form-group">--}}
@@ -58,6 +58,7 @@
         {{--<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">系统生成gif--}}
         {{--<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">系统生成jpg--}}
         <input type="hidden" id="hash">
+        <input type="hidden" id="img">
         {{--</div>--}}
         {{--</div>--}}
         <div class="form-group">
@@ -154,7 +155,7 @@
                     success: function (data, itemEl, listEl, boxEl, newInputEl, inputEl, id) {
                         var parent = itemEl.find(".jFiler-jProgressBar").parent(),
                             new_file_name = JSON.parse(data);
-                        $("#hash").val(new_file_name);
+                        $("#hash").val(new_file_name.filename);
                         console.log(new_file_name);
                         filerKit = inputEl.prop("jFiler");
 
