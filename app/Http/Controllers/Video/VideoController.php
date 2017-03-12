@@ -36,12 +36,12 @@ class VideoController extends Controller
     //TODO:上传完删除该文件,二次上传的时候删除该信息
     public function uploadVideo(Request $request)
     {
-
-        $this->validate($request, [
-                'name' => 'required',
-                'content' => 'required'
-            ]
-        );
+        dd($request->all());
+//        $this->validate($request, [
+//                'name' => 'required',
+//                'content' => 'required'
+//            ]
+//        );
         $file = $request->file('file');
         //如果上传文件为空的话,直接返回失败
         if (empty($file)) {

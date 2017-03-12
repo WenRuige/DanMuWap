@@ -40,18 +40,5 @@ class DynamicController extends Controller
         if (!empty($dynamicInfo['data'])) {
             echo json_encode($dynamicInfo['data'][array_rand($dynamicInfo['data'])]);
         }
-        //dd($data);
-//        $barrages =
-//            array(
-//                array(
-//                    'info' => '第一条弹幕',
-//                    //'img' => '../123.jpg',
-//                ),
-//                array(
-//                    'info' => '第二条弹幕',
-//                ),);
-//
-//        var_dump($barrages);
-//        echo json_encode($barrages[array_rand($barrages)]);
     }
 }

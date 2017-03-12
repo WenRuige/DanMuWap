@@ -30,20 +30,71 @@
         .marquee {
             width: 100%; /* the plugin works for responsive layouts so width is not necessary */
             overflow: hidden;
-            height: 25px;
+            height: 300px;
             margin-top: 10px;
             background-color: #ffffff;
             box-shadow: 0px 1px 3px rgba(34, 25, 25, 0.2);
         }
-        a:link{color:#000000}
+        #inside{
+            margin: 10px;
+        }
+        a:link {
+            color: #000000
+        }
     </style>
     <!--重写nav -->
     <div id="back">
         <span class="glyphicon glyphicon-chevron-left"></span><a href='javascript:history.go(-1)'>后退</a>
     </div>
+
     <code>看看大家都在说什么</code>
     <div class='marquee'>
-        <code>xxx用户数</code> 太帅了
+
+        <div id="inside">
+        <div class="direct-chat-msg">
+            <div class="direct-chat-info clearfix">
+                <span class="direct-chat-name pull-left">Alexander Pierce</span>
+                <span class="direct-chat-timestamp pull-right">23 Jan 2:00 pm</span>
+            </div>
+            <!-- /.direct-chat-info -->
+            <img class="direct-chat-img" src="dist/img/user1-128x128.jpg" alt="message user image">
+            <!-- /.direct-chat-img -->
+            <div class="direct-chat-text">
+                Is this template really for free? That's unbelievable!
+            </div>
+            <!-- /.direct-chat-text -->
+        </div>
+
+
+        <div class="direct-chat-msg">
+            <div class="direct-chat-info clearfix">
+                <span class="direct-chat-name pull-left">Alexander Pierce</span>
+                <span class="direct-chat-timestamp pull-right">23 Jan 2:00 pm</span>
+            </div>
+            <!-- /.direct-chat-info -->
+            <img class="direct-chat-img" src="../123.jpg" alt="message user image">
+            <!-- /.direct-chat-img -->
+            <div class="direct-chat-text">
+                Is this template really for free? That's unbelievable!
+            </div>
+            <!-- /.direct-chat-text -->
+        </div>
+
+        <div class="direct-chat-msg">
+            <div class="direct-chat-info clearfix">
+                <span class="direct-chat-name pull-left">Alexander Pierce</span>
+                <span class="direct-chat-timestamp pull-right">23 Jan 2:00 pm</span>
+            </div>
+            <!-- /.direct-chat-info -->
+            <img class="direct-chat-img" src="dist/img/user1-128x128.jpg" alt="message user image">
+            <!-- /.direct-chat-img -->
+            <div class="direct-chat-text">
+                Is this template really for free? That's unbelievable!
+            </div>
+            <!-- /.direct-chat-text -->
+        </div>
+        </div>
+
     </div>
     <div id="app">
         <code>动弹一下</code>
@@ -56,10 +107,10 @@
             </div>
 
             {{--<div class="form-group">--}}
-                {{--<label for="上传您的小图" class="col-sm-5 control-label">上传您的小图</label>--}}
-                {{--<div class="col-sm-8">--}}
-                    {{--<input type="file" name="file" id="filer_input" multiple="multiple">--}}
-                {{--</div>--}}
+            {{--<label for="上传您的小图" class="col-sm-5 control-label">上传您的小图</label>--}}
+            {{--<div class="col-sm-8">--}}
+            {{--<input type="file" name="file" id="filer_input" multiple="multiple">--}}
+            {{--</div>--}}
             {{--</div>--}}
             <input type="submit" class="btn btn-block btn-info btn-sm" value="提交">
         </form>

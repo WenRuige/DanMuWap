@@ -13,6 +13,12 @@
 //将默认session 改为redis
 ini_set('session.save_handler', 'redis');
 ini_set('session.save_path', 'tcp://127.0.0.1:6379');
+ini_set('date.timezone', 'Asia/Shanghai');
+//设置过期时间
+//cookie设置http only的效果是防止XSS攻击
+ini_set("session.cookie_httponly", 1);
+ini_set('session.gc_maxlifetime', 14400); //设置session过期时间
+set_time_limit(0);
 session_start();
 //定义主依赖的位置
 define('SERVICE_PATH', __DIR__ . '/../../coreservice');
