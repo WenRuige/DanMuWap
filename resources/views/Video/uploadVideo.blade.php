@@ -25,6 +25,9 @@
             margin-top: 10px;
             background-color: #ffffff;
         }
+        a:link {
+            color: #000000
+        }
     </style>
     <!--重写nav -->
     <div id="back">

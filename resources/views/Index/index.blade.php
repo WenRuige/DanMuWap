@@ -83,7 +83,7 @@
 
             </div>
             <div class="sHoverItem" style="margin-bottom:5px;border-bottom: 1px black solid">
-                <img class="img-responsive" src="{{url('video/cover/'.$value['picture'])}}" alt="Photo">
+                <img class="img-responsive" src="{{$value['picture']}}" alt="Photo">
                 <span id="intro1" class="sIntro">
 					<h2>{{$value['name']}}</h2>
 					<p>{{$value['content']}}</p>

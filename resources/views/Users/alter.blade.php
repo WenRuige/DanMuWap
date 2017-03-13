@@ -24,6 +24,9 @@
             margin-top: 10px;
             background-color: #ffffff;
         }
+        a:link {
+            color: #000000
+        }
     </style>
 
     <!-- test area -->

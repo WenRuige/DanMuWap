@@ -20,10 +20,18 @@ class IndexController extends Controller
         //如果视频内容不为空的话
         if (!empty($videoInfo['data'])) {
             foreach ($videoInfo['data'] as $key => $value) {
+
                 $userInfo = UserService::getInstance()->getUserInformation($value['user_id'], ['photo', 'nickname']);
                 if (!empty($userInfo['data'])) {
                     $videoInfo['data'][$key] = array_merge($videoInfo['data'][$key], $userInfo['data']);
                 }
+                //如果图片为空的话,将gif代替他
+                if(empty($value['picture'])){
+                    $videoInfo['data'][$key]['picture'] = 'video/gif/'.$value['gif'];
+                }else{
+                    $videoInfo['data'][$key]['picture'] = 'video/cover/'.$value['picture'];
+                }
+
             }
         }
         return view('Index.index', ['data' => $videoInfo['data']]);

@@ -20,7 +20,7 @@ var video = {
         //封面
         dataObj['picture'] = $("#img").val();
         $.post("uploadVideoInformation", dataObj, function (ret) {
-
+            window.location.href = 'index';
         });
 
     },//上传图片

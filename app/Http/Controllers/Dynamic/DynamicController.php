@@ -9,6 +9,7 @@ namespace App\Http\Controllers\Dynamic;
 
 use App\Http\Controllers\Controller;
 use core\Dynamic\DynamicService;
+use core\User\UserService;
 use Illuminate\Http\Request;
 
 //动弹地址
@@ -16,7 +17,20 @@ class DynamicController extends Controller
 {
     public function index()
     {
-        return view('Dynamic.index');
+        $dynamicInfo = DynamicService::getInstance()->getDynamic();
+        foreach ($dynamicInfo['data'] as $key => $value) {
+            if (isset($value['user_id'])) {
+                $userInfo = UserService::getInstance()->getUserInformation($value['user_id'], ['photo', 'nickname']);
+                if (!empty($userInfo['data'])) {
+                    $dynamicInfo['data'][$key]['img'] = 'picture/upload/' . $userInfo['data']['photo'];
+                    $dynamicInfo['data'][$key]['nickname'] = $userInfo['data']['nickname'];
+                }
+            } else {
+                $dynamicInfo['data'][$key]['img'] = 'dist/img/timg.jpeg';
+                $dynamicInfo['data'][$key]['nickname'] = '匿名账户';
+            }
+        }
+        return view('Dynamic.index', ['dynamic' => $dynamicInfo['data']]);
     }
 
 
@@ -28,7 +42,7 @@ class DynamicController extends Controller
         ]);
         $info = DynamicService::getInstance()->sendDynamic($request->info);
         if (!empty($info['data'])) {
-
+            return redirect('dynamic');
         }
     }
 
@@ -37,6 +51,15 @@ class DynamicController extends Controller
     {
 
         $dynamicInfo = DynamicService::getInstance()->getDynamic();
+        foreach ($dynamicInfo['data'] as $key => $value) {
+            if (isset($value['user_id'])) {
+                $userInfo = UserService::getInstance()->getUserInformation($value['user_id'], ['photo']);
+                if (!empty($userInfo['data'])) {
+                    $dynamicInfo['data'][$key]['img'] = 'picture/upload/' . $userInfo['data']['photo'];
+                }
+            }
+        }
+
         if (!empty($dynamicInfo['data'])) {
             echo json_encode($dynamicInfo['data'][array_rand($dynamicInfo['data'])]);
         }

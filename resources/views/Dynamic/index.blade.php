@@ -34,9 +34,11 @@
             background-color: #ffffff;
             box-shadow: 0px 1px 3px rgba(34, 25, 25, 0.2);
         }
-        #inside{
+
+        #inside {
             margin: 10px;
         }
+
         a:link {
             color: #000000
         }
@@ -50,48 +52,24 @@
     <div class='marquee'>
 
         <div id="inside">
-        <div class="direct-chat-msg">
-            <div class="direct-chat-info clearfix">
-                <span class="direct-chat-name pull-left">Alexander Pierce</span>
-                <span class="direct-chat-timestamp pull-right">23 Jan 2:00 pm</span>
-            </div>
-            <!-- /.direct-chat-info -->
-            <img class="direct-chat-img" src="dist/img/user1-128x128.jpg" alt="message user image">
-            <!-- /.direct-chat-img -->
-            <div class="direct-chat-text">
-                Is this template really for free? That's unbelievable!
-            </div>
-            <!-- /.direct-chat-text -->
-        </div>
+            @foreach($dynamic as $value)
+                <div class="direct-chat-msg">
+                    <div class="direct-chat-info clearfix">
+                        <span class="direct-chat-name pull-left">{{$value['nickname']}}</span>
+                        <span class="direct-chat-timestamp pull-right">{{$value['create_time']}}</span>
+                    </div>
+                    <!-- /.direct-chat-info -->
 
+                    <img class="direct-chat-img" src="{{$value['img']}}" alt="message user image">
 
-        <div class="direct-chat-msg">
-            <div class="direct-chat-info clearfix">
-                <span class="direct-chat-name pull-left">Alexander Pierce</span>
-                <span class="direct-chat-timestamp pull-right">23 Jan 2:00 pm</span>
-            </div>
-            <!-- /.direct-chat-info -->
-            <img class="direct-chat-img" src="../123.jpg" alt="message user image">
-            <!-- /.direct-chat-img -->
-            <div class="direct-chat-text">
-                Is this template really for free? That's unbelievable!
-            </div>
-            <!-- /.direct-chat-text -->
-        </div>
+                    <!-- /.direct-chat-img -->
+                    <div class="direct-chat-text">
+                        {{$value['info']}}
+                    </div>
+                    <!-- /.direct-chat-text -->
+                </div>
+            @endforeach
 
-        <div class="direct-chat-msg">
-            <div class="direct-chat-info clearfix">
-                <span class="direct-chat-name pull-left">Alexander Pierce</span>
-                <span class="direct-chat-timestamp pull-right">23 Jan 2:00 pm</span>
-            </div>
-            <!-- /.direct-chat-info -->
-            <img class="direct-chat-img" src="dist/img/user1-128x128.jpg" alt="message user image">
-            <!-- /.direct-chat-img -->
-            <div class="direct-chat-text">
-                Is this template really for free? That's unbelievable!
-            </div>
-            <!-- /.direct-chat-text -->
-        </div>
         </div>
 
     </div>
