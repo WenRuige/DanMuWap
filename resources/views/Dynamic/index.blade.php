@@ -3,7 +3,6 @@
     选择您想说的话,动弹一下吧
 @endsection
 @section('content')
-    <link rel="stylesheet" href="{{url('plugins/filer/css/jquery.filer.css')}}">
     <style>
         #back {
             /*position:fixed;*/
@@ -130,7 +129,4 @@
     </script>
     <!-- 引入 css -->
     <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
-    <script src="{{url('plugins/filer/js/custom.js')}}"></script>
-    <script src="{{url('plugins/filer/js/jquery.filer.min.js')}}"></script>
-
 @endsection

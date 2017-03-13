@@ -25,6 +25,9 @@
             margin-top: 10px;
             background-color: #ffffff;
         }
+        a:link {
+            color: #000000
+        }
     </style>
     <!--重写nav -->
     <div id="back">
@@ -41,7 +44,11 @@
 
     <!-- 引入 css -->
     <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
-    <script src="{{url('plugins/filer/js/custom.js')}}"></script>
     <script src="{{url('plugins/filer/js/jquery.filer.min.js')}}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#filer_input').filer();
+        });
+    </script>
 
 @endsection

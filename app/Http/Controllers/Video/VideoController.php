@@ -63,24 +63,6 @@ class VideoController extends Controller
         if (!empty($info['data'])) {
             echo json_encode(array('filename' => $info['data']));
         }
-
-        //如果上传文件为空的话,直接返回失败
-//        if (empty($file)) {
-//            return redirect('home');
-//        }
-//        //支持多文件上传
-//        $request->file('file')[0]->move('video/upload', $filename . '.mp4');
-//        $request->file('picture')->move('video/cover', $filename . '.jpg');
-//        $data['picture'] = $filename . '.jpg';
-//        $data['name'] = $request->name;
-//        $data['video'] = $filename . '.mp4';
-//        $data['content'] = $request->content;
-//        $data['create_time'] = date("Y-m-d H:i:s");
-//        $data['user_id'] = $_SESSION['userId'];
-//        $info = VideoService::getInstance()->uploadVideo($data);
-//        if ($info['code'] == Constant::SUCCESS) {
-//            return redirect('home');
-//        }
     }
 
     //上传视频相关信息
