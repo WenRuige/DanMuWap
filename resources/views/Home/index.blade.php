@@ -30,7 +30,7 @@
             <div class="box-footer">
                 <div class="col-xs-4 border-right">
                     <div class="description-block">
-                        <h5 class="description-header">3,200</h5>
+                        <h5 class="description-header">{{$video}}</h5>
                         <span class="description-text">发布的视频</span>
                     </div>
                     <!-- /.description-block -->

@@ -28,11 +28,14 @@ class HomeController extends Controller
         }
         //发布视频的数量
         $videoInfo = VideoService::getInstance()->getVideoNum();
+        if (!isset($videoInfo['data'])) {
+            $videoInfo['data'] = 0;
+        }
         if (empty($userInfo['data'])) {
             $userInfo['data']['nickname'] = '无名氏';
             $userInfo['data']['introduce'] = '这个用户很懒';
         }
-        return view('Home.index', ['data' => $userInfo['data'], 'follow' => $followInfo['data']]);
+        return view('Home.index', ['data' => $userInfo['data'], 'follow' => $followInfo['data'],'video' => $videoInfo['data']]);
     }
 
 }
